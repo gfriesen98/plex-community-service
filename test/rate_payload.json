@@ -1,0 +1,684 @@
+{
+    "rating": 9,
+    "event": "media.rate",
+    "user": true,
+    "owner": true,
+    "Account": {
+        "id": 123456789,
+        "thumb": "https://plex.tv/users/123456789/avatar?c=1746410585",
+        "title": "user name"
+    },
+    "Server": {
+        "title": "server name",
+        "uuid": "1234567890987654321"
+    },
+    "Player": {
+        "local": true,
+        "publicAddress": "1.1.1.1",
+        "title": "Firefox",
+        "uuid": "1234567890"
+    },
+    "Metadata": {
+        "librarySectionType": "movie",
+        "ratingKey": "24157",
+        "key": "/library/metadata/24157",
+        "guid": "plex://movie/5d7768257228e5001f1dccd2",
+        "slug": "batman",
+        "studio": "Warner Bros. Pictures",
+        "type": "movie",
+        "title": "Batman",
+        "librarySectionTitle": "Movies",
+        "librarySectionID": 1,
+        "librarySectionKey": "/library/sections/1",
+        "contentRating": "PG-13",
+        "summary": "The Dark Knight of Gotham City begins his war on crime with his first major enemy being Jack Napier, a criminal who becomes the clownishly homicidal Joker.",
+        "rating": 7.7,
+        "audienceRating": 8.4,
+        "userRating": 9,
+        "viewCount": 2,
+        "lastViewedAt": 1716351267,
+        "lastRatedAt": 1746422957,
+        "year": 1989,
+        "tagline": "Justice is always darkest before the dawn.",
+        "thumb": "/library/metadata/24157/thumb/1746422819",
+        "art": "/library/metadata/24157/art/1746422819",
+        "duration": 7576672,
+        "originallyAvailableAt": "1989-06-21",
+        "addedAt": 1746422819,
+        "updatedAt": 1746422819,
+        "audienceRatingImage": "rottentomatoes://image.rating.upright",
+        "chapterSource": "media",
+        "primaryExtraKey": "/library/metadata/24158",
+        "ratingImage": "rottentomatoes://image.rating.ripe",
+        "Image": [
+            {
+                "alt": "Batman",
+                "type": "coverPoster",
+                "url": "/library/metadata/24157/thumb/1746422819"
+            },
+            {
+                "alt": "Batman",
+                "type": "background",
+                "url": "/library/metadata/24157/art/1746422819"
+            },
+            {
+                "alt": "Batman",
+                "type": "clearLogo",
+                "url": "/library/metadata/24157/clearLogo/1746422819"
+            }
+        ],
+        "UltraBlurColors": {
+            "topLeft": "48220c",
+            "topRight": "94411d",
+            "bottomRight": "1a3156",
+            "bottomLeft": "9b3a21"
+        },
+        "Genre": [
+            {
+                "id": 262,
+                "filter": "genre=262",
+                "tag": "Action",
+                "count": 231
+            },
+            {
+                "id": 7,
+                "filter": "genre=7",
+                "tag": "Adventure",
+                "count": 140
+            },
+            {
+                "id": 110,
+                "filter": "genre=110",
+                "tag": "Fantasy",
+                "count": 104
+            },
+            {
+                "id": 161,
+                "filter": "genre=161",
+                "tag": "Crime",
+                "count": 116
+            }
+        ],
+        "Country": [
+            {
+                "id": 77,
+                "filter": "country=77",
+                "tag": "United States of America",
+                "count": 287
+            }
+        ],
+        "Guid": [
+            {
+                "id": "imdb://tt0096895"
+            },
+            {
+                "id": "tmdb://268"
+            },
+            {
+                "id": "tvdb://1204"
+            }
+        ],
+        "Rating": [
+            {
+                "image": "imdb://image.rating",
+                "value": 7.5,
+                "type": "audience",
+                "count": 378
+            },
+            {
+                "image": "rottentomatoes://image.rating.ripe",
+                "value": 7.7,
+                "type": "critic",
+                "count": 259
+            },
+            {
+                "image": "rottentomatoes://image.rating.upright",
+                "value": 8.4,
+                "type": "audience",
+                "count": 289
+            },
+            {
+                "image": "themoviedb://image.rating",
+                "value": 7.2,
+                "type": "audience",
+                "count": 377
+            }
+        ],
+        "Director": [
+            {
+                "id": 1005,
+                "filter": "director=1005",
+                "tag": "Tim Burton",
+                "tagKey": "5d7768243c3c2a001fbca919",
+                "count": 4,
+                "thumb": "https://metadata-static.plex.tv/e/people/e908e43f814d75c934e878ad16e600d0.jpg"
+            }
+        ],
+        "Writer": [
+            {
+                "id": 1007,
+                "filter": "writer=1007",
+                "tag": "Bob Kane",
+                "tagKey": "5d77698396b655001fdd0cff",
+                "count": 9,
+                "thumb": "https://metadata-static.plex.tv/people/5d77698396b655001fdd0cff.jpg"
+            },
+            {
+                "id": 1006,
+                "filter": "writer=1006",
+                "tag": "Warren Skaaren",
+                "tagKey": "5d776825eb5d26001f1dd1cf",
+                "count": 2
+            },
+            {
+                "id": 1008,
+                "filter": "writer=1008",
+                "tag": "Sam Hamm",
+                "tagKey": "5d7768277228e5001f1dd046",
+                "count": 2
+            }
+        ],
+        "Role": [
+            {
+                "id": 1009,
+                "filter": "actor=1009",
+                "tag": "Michael Keaton",
+                "tagKey": "5d7768255af944001f1f6391",
+                "count": 6,
+                "role": "Bruce Wayne / Batman",
+                "thumb": "https://metadata-static.plex.tv/d/people/d5a6a5408f4399b272712d3b4fa0d143.jpg"
+            },
+            {
+                "id": 1010,
+                "filter": "actor=1010",
+                "tag": "Jack Nicholson",
+                "tagKey": "5d7768255af944001f1f63c8",
+                "count": 2,
+                "role": "Jack Napier / The Joker",
+                "thumb": "https://metadata-static.plex.tv/0/people/0560310d7af80f6f9f313784ea5431cd.jpg"
+            },
+            {
+                "id": 1011,
+                "filter": "actor=1011",
+                "tag": "Kim Basinger",
+                "tagKey": "5d776826e6d55c002040af92",
+                "role": "Vicki Vale",
+                "thumb": "https://metadata-static.plex.tv/f/people/fc952993a9e69c05e9891f141fbadb6a.jpg"
+            },
+            {
+                "id": 1014,
+                "filter": "actor=1014",
+                "tag": "Robert Wuhl",
+                "tagKey": "5d7768255af944001f1f640a",
+                "role": "Alexander Knox",
+                "thumb": "https://metadata-static.plex.tv/4/people/40363d61a77c44acf5eeb84cd430123d.jpg"
+            },
+            {
+                "id": 1015,
+                "filter": "actor=1015",
+                "tag": "Pat Hingle",
+                "tagKey": "5d776826103a2d001f563f61",
+                "count": 4,
+                "role": "Commissioner James Gordon",
+                "thumb": "https://metadata-static.plex.tv/2/people/2bf81d43d16d2d5acea3c59b117b2a34.jpg"
+            },
+            {
+                "id": 1016,
+                "filter": "actor=1016",
+                "tag": "Billy Dee Williams",
+                "tagKey": "5d7768273c3c2a001fbcb254",
+                "count": 4,
+                "role": "Harvey Dent",
+                "thumb": "https://metadata-static.plex.tv/b/people/b5b60c2f5311d93ae9766983f79088ca.jpg"
+            },
+            {
+                "id": 1012,
+                "filter": "actor=1012",
+                "tag": "Michael Gough",
+                "tagKey": "62fb7cb5443e060f7ad9452a",
+                "count": 4,
+                "role": "Alfred Pennyworth",
+                "thumb": "https://metadata-static.plex.tv/7/people/7917a41eb55740bfa3f3a30b21d6e0d1.jpg"
+            },
+            {
+                "id": 1017,
+                "filter": "actor=1017",
+                "tag": "Jack Palance",
+                "tagKey": "5d7768243c3c2a001fbca94b",
+                "role": "Grissom",
+                "thumb": "https://metadata-static.plex.tv/d/people/d1b6793018268f18fcc97f655555ff4b.jpg"
+            },
+            {
+                "id": 1013,
+                "filter": "actor=1013",
+                "tag": "Jerry Hall",
+                "tagKey": "5d7768277228e5001f1dd01f",
+                "role": "Alicia",
+                "thumb": "https://metadata-static.plex.tv/7/people/7e364515f96a90fc819861ae723a9870.jpg"
+            },
+            {
+                "id": 1018,
+                "filter": "actor=1018",
+                "tag": "Tracey Walter",
+                "tagKey": "5d776825eb5d26001f1dd2b2",
+                "count": 2,
+                "role": "Bob the Goon",
+                "thumb": "https://metadata-static.plex.tv/9/people/9fc3fc4585d56d52bf97157ca14cd131.jpg"
+            },
+            {
+                "id": 1019,
+                "filter": "actor=1019",
+                "tag": "Lee Wallace",
+                "tagKey": "5d7768277228e5001f1dd020",
+                "role": "Mayor",
+                "thumb": "https://metadata-static.plex.tv/8/people/884b1051884424e99919d9e63d15c4f9.jpg"
+            },
+            {
+                "id": 1020,
+                "filter": "actor=1020",
+                "tag": "William Hootkins",
+                "tagKey": "5d776825880197001ec90336",
+                "count": 3,
+                "role": "Eckhardt",
+                "thumb": "https://metadata-static.plex.tv/3/people/33e8d5b2eed455355af50c3a0634d478.jpg"
+            },
+            {
+                "id": 1021,
+                "filter": "actor=1021",
+                "tag": "Richard Strange",
+                "tagKey": "5d7768277228e5001f1dd021",
+                "role": "Goon",
+                "thumb": "https://metadata-static.plex.tv/d/people/db03ce687cc7557f01d65b9cf8259720.jpg"
+            },
+            {
+                "id": 1022,
+                "filter": "actor=1022",
+                "tag": "Carl Chase",
+                "tagKey": "5d7768274de0ee001fcc89d8",
+                "role": "Goon",
+                "thumb": "https://metadata-static.plex.tv/8/people/836cc6e3cb68fc7bc9e938a0a705b063.jpg"
+            },
+            {
+                "id": 1023,
+                "filter": "actor=1023",
+                "tag": "Mac McDonald",
+                "tagKey": "5d776824103a2d001f563ad9",
+                "count": 2,
+                "role": "Goon",
+                "thumb": "https://metadata-static.plex.tv/people/5d776824103a2d001f563ad9.jpg"
+            },
+            {
+                "id": 1024,
+                "filter": "actor=1024",
+                "tag": "George Lane Cooper",
+                "tagKey": "5d7768277228e5001f1dd023",
+                "role": "Goon"
+            },
+            {
+                "id": 1025,
+                "filter": "actor=1025",
+                "tag": "Terence Plummer",
+                "tagKey": "5d7768277228e5001f1dd024",
+                "role": "Goon"
+            },
+            {
+                "id": 1026,
+                "filter": "actor=1026",
+                "tag": "Philip Tan",
+                "tagKey": "5d7768258718ba001e311673",
+                "count": 3,
+                "role": "Goon",
+                "thumb": "https://metadata-static.plex.tv/people/5d7768258718ba001e311673.jpg"
+            },
+            {
+                "id": 1027,
+                "filter": "actor=1027",
+                "tag": "John Sterland",
+                "tagKey": "5d7768277228e5001f1dd025",
+                "role": "Accountant"
+            },
+            {
+                "id": 1028,
+                "filter": "actor=1028",
+                "tag": "Edwin Craig",
+                "tagKey": "5d7768277228e5001f1dd026",
+                "role": "Rotelli"
+            },
+            {
+                "id": 1029,
+                "filter": "actor=1029",
+                "tag": "Vincent Wong",
+                "tagKey": "5d7768277228e5001f1dd027",
+                "count": 2,
+                "role": "Crimelord 1",
+                "thumb": "https://image.tmdb.org/t/p/original/lWPw6iMQKOSh4w099GkexZKkv4F.jpg"
+            },
+            {
+                "id": 1030,
+                "filter": "actor=1030",
+                "tag": "Joel Cutrara",
+                "tagKey": "5d7768277228e5001f1dd028",
+                "role": "Crimelord 2"
+            },
+            {
+                "id": 1031,
+                "filter": "actor=1031",
+                "tag": "John Dair",
+                "tagKey": "5d7768277228e5001f1dd029",
+                "role": "Ricorso",
+                "thumb": "https://image.tmdb.org/t/p/original/gWnyI9HlXorKoe93uw73VJEIUyA.jpg"
+            },
+            {
+                "id": 1032,
+                "filter": "actor=1032",
+                "tag": "Christopher Fairbank",
+                "tagKey": "5d776824103a2d001f563ad4",
+                "count": 2,
+                "role": "Nic",
+                "thumb": "https://metadata-static.plex.tv/5/people/56f00e7aadde6de6cb72db786462aca2.jpg"
+            },
+            {
+                "id": 107376,
+                "filter": "actor=107376",
+                "tag": "George Roth",
+                "tagKey": "67e524973200258b8c94dfe1",
+                "role": "Eddie"
+            },
+            {
+                "id": 1034,
+                "filter": "actor=1034",
+                "tag": "Kate Harper",
+                "tagKey": "5d7768277228e5001f1dd02b",
+                "role": "Anchorwoman",
+                "thumb": "https://metadata-static.plex.tv/people/5d7768277228e5001f1dd02b.jpg"
+            },
+            {
+                "id": 1035,
+                "filter": "actor=1035",
+                "tag": "Bruce McGuire",
+                "tagKey": "5d7768277228e5001f1dd02c",
+                "role": "Anchorman",
+                "thumb": "https://metadata-static.plex.tv/e/people/ec62f9ab6eaf389422c0ff1f22ed7834.jpg"
+            },
+            {
+                "id": 1036,
+                "filter": "actor=1036",
+                "tag": "Richard Durden",
+                "tagKey": "5d7768253c3c2a001fbca9d4",
+                "count": 2,
+                "role": "TV Director",
+                "thumb": "https://metadata-static.plex.tv/9/people/98daf9cc2ce5faf1383f70cb29251173.jpg"
+            },
+            {
+                "id": 1037,
+                "filter": "actor=1037",
+                "tag": "Kit Hollerbach",
+                "tagKey": "5d7768277228e5001f1dd02e",
+                "role": "Becky"
+            },
+            {
+                "id": 1038,
+                "filter": "actor=1038",
+                "tag": "Lachele Carl",
+                "tagKey": "5d7768348718ba001e314290",
+                "role": "TV Technician",
+                "thumb": "https://metadata-static.plex.tv/people/5d7768348718ba001e314290.jpg"
+            },
+            {
+                "id": 1039,
+                "filter": "actor=1039",
+                "tag": "Derek Baker",
+                "tagKey": "5d7768277228e5001f1dd030",
+                "role": "Napier Hood"
+            },
+            {
+                "id": 1040,
+                "filter": "actor=1040",
+                "tag": "Jazzer Jeyes",
+                "tagKey": "5d7768277228e5001f1dd031",
+                "role": "Napier Hood"
+            },
+            {
+                "id": 1041,
+                "filter": "actor=1041",
+                "tag": "Wayne Michaels",
+                "tagKey": "5d7768277228e5001f1dd032",
+                "count": 2,
+                "role": "Napier Hood",
+                "thumb": "https://image.tmdb.org/t/p/original/dbrRDsusrvhtmfwiqVrwg8N0KMj.jpg"
+            },
+            {
+                "id": 1042,
+                "filter": "actor=1042",
+                "tag": "Valentino Musetti",
+                "tagKey": "5d7768277228e5001f1dd033",
+                "role": "Napier Hood",
+                "thumb": "https://metadata-static.plex.tv/4/people/4c0989807508b20b9881accc3a8cb2b5.jpg"
+            },
+            {
+                "id": 1043,
+                "filter": "actor=1043",
+                "tag": "Rocky Taylor",
+                "tagKey": "5d776825eb5d26001f1dd1f1",
+                "count": 3,
+                "role": "Napier Hood",
+                "thumb": "https://metadata-static.plex.tv/6/people/6dce838a0ce2782f3fe8e10a3f140849.jpg"
+            },
+            {
+                "id": 1044,
+                "filter": "actor=1044",
+                "tag": "Keith Edwards",
+                "tagKey": "5d7768277228e5001f1dd034",
+                "role": "Reporter"
+            },
+            {
+                "id": 1045,
+                "filter": "actor=1045",
+                "tag": "Leon Herbert",
+                "tagKey": "5d7768277228e5001f1dd035",
+                "count": 2,
+                "role": "Reporter",
+                "thumb": "https://metadata-static.plex.tv/1/people/169b7aa90c12d388847efc1229e1e50d.jpg"
+            },
+            {
+                "id": 1046,
+                "filter": "actor=1046",
+                "tag": "Steve Plytas",
+                "tagKey": "5d7768277228e5001f1dd036",
+                "role": "Doctor",
+                "thumb": "https://metadata-static.plex.tv/5/people/5ca6c40ba8c4892747b2034a27c1edd6.jpg"
+            },
+            {
+                "id": 1047,
+                "filter": "actor=1047",
+                "tag": "Anthony Wellington",
+                "tagKey": "5d7768277228e5001f1dd037",
+                "role": "Patrolman at Party"
+            },
+            {
+                "id": 1048,
+                "filter": "actor=1048",
+                "tag": "Amir M. Korangy",
+                "tagKey": "5d7768277228e5001f1dd038",
+                "role": "Wine Steward",
+                "thumb": "https://metadata-static.plex.tv/c/people/c50755de56fbf8bfe9202a192cb11b04.jpg"
+            },
+            {
+                "id": 1049,
+                "filter": "actor=1049",
+                "tag": "Hugo Blick",
+                "tagKey": "5d7768277228e5001f1dd039",
+                "role": "Young Jack Napier",
+                "thumb": "https://metadata-static.plex.tv/0/people/0ba2b27a48dbf75a30028d92f9ddacf4.jpg"
+            },
+            {
+                "id": 1050,
+                "filter": "actor=1050",
+                "tag": "Charles Roskilly",
+                "tagKey": "5d7768277228e5001f1dd03a",
+                "role": "Young Bruce Wayne"
+            },
+            {
+                "id": 1051,
+                "filter": "actor=1051",
+                "tag": "Philip O'Brien",
+                "tagKey": "5d7768277228e5001f1dd03b",
+                "role": "Maitre d'"
+            },
+            {
+                "id": 1052,
+                "filter": "actor=1052",
+                "tag": "Michael Balfour",
+                "tagKey": "5d7768277228e5001f1dd03c",
+                "role": "Scientist"
+            },
+            {
+                "id": 1053,
+                "filter": "actor=1053",
+                "tag": "Garrick Hagon",
+                "tagKey": "5d776825880197001ec90334",
+                "count": 4,
+                "role": "Dad",
+                "thumb": "https://metadata-static.plex.tv/5/people/5d3e08396c4a3bf2d182c916cee0e744.jpg"
+            },
+            {
+                "id": 1054,
+                "filter": "actor=1054",
+                "tag": "Liza Ross",
+                "tagKey": "5d7768277228e5001f1dd03d",
+                "role": "Mom",
+                "thumb": "https://metadata-static.plex.tv/f/people/fb766fd80b6afe99c6e27aa3e7dceb6c.jpg"
+            },
+            {
+                "id": 1055,
+                "filter": "actor=1055",
+                "tag": "Adrian Meyers",
+                "tagKey": "5d7768277228e5001f1dd03e",
+                "role": "Jimmy"
+            },
+            {
+                "id": 1056,
+                "filter": "actor=1056",
+                "tag": "David Baxt",
+                "tagKey": "5d7768277228e5001f1dd03f",
+                "role": "Dr Wayne",
+                "thumb": "https://metadata-static.plex.tv/people/5d7768277228e5001f1dd03f.jpg"
+            },
+            {
+                "id": 101906,
+                "filter": "actor=101906",
+                "tag": "Sharon Holm",
+                "tagKey": "67dc56145fe45434b3ded16e",
+                "role": "Mrs Wayne"
+            },
+            {
+                "id": 1058,
+                "filter": "actor=1058",
+                "tag": "Clyde Gatell",
+                "tagKey": "5f3fa6a6fea1a1003f9491c2",
+                "role": "Other Mugger"
+            },
+            {
+                "id": 1059,
+                "filter": "actor=1059",
+                "tag": "Jon Soresi",
+                "tagKey": "5d7768277228e5001f1dd042",
+                "role": "Medic"
+            },
+            {
+                "id": 1060,
+                "filter": "actor=1060",
+                "tag": "Elliott Stein",
+                "tagKey": "5d7768277228e5001f1dd043",
+                "role": "Man in Crowd"
+            },
+            {
+                "id": 1061,
+                "filter": "actor=1061",
+                "tag": "Sam Douglas",
+                "tagKey": "5d776824103a2d001f563af0",
+                "count": 3,
+                "role": "Lawyer",
+                "thumb": "https://metadata-static.plex.tv/2/people/2e24cae682b5b58c81a4a5082504d139.jpg"
+            },
+            {
+                "id": 1062,
+                "filter": "actor=1062",
+                "tag": "Denis Lill",
+                "tagKey": "5d7768277228e5001f1dd044",
+                "role": "Bob the Cartoonist",
+                "thumb": "https://metadata-static.plex.tv/e/people/ed78a33614c7a6aa15857b4db2fe2ab4.jpg"
+            },
+            {
+                "id": 1063,
+                "filter": "actor=1063",
+                "tag": "Paul Birchard",
+                "tagKey": "5d7768267e9a3c0020c6aa4f",
+                "count": 2,
+                "role": "Reporter",
+                "thumb": "https://metadata-static.plex.tv/people/5d7768267e9a3c0020c6aa4f.jpg"
+            },
+            {
+                "id": 60762,
+                "filter": "actor=60762",
+                "tag": "Paul Michael",
+                "tagKey": "5d77685c54c0f0001f30727c",
+                "role": "Cop"
+            },
+            {
+                "id": 1065,
+                "filter": "actor=1065",
+                "tag": "Pat Gorman",
+                "tagKey": "5d77682a8718ba001e3125bd",
+                "role": "Cop at Axis Chemicals",
+                "thumb": "https://metadata-static.plex.tv/9/people/9e494ca1f50b80b24945834837f53d76.jpg"
+            },
+            {
+                "id": 107377,
+                "filter": "actor=107377",
+                "tag": "Chris Andrews",
+                "tagKey": "67f8305a2cc6d831ab0e2f08",
+                "role": "Election Ceremony Patron"
+            },
+            {
+                "id": 1067,
+                "filter": "actor=1067",
+                "tag": "Stephanie English",
+                "tagKey": "6479da48bcb1e2fea8028606",
+                "count": 2,
+                "role": "Woman in Green Coat"
+            },
+            {
+                "id": 83912,
+                "filter": "actor=83912",
+                "tag": "Albert Evansky",
+                "tagKey": "5f3fa5c904a865004094f7b2",
+                "count": 2,
+                "role": "Crimelord #3 (uncredited)"
+            },
+            {
+                "id": 100561,
+                "filter": "actor=100561",
+                "tag": "Fred Stroud",
+                "tagKey": "5d77683a7e9a3c0020c6da9c",
+                "role": "Party Guest at Wayne Manor (uncredited)"
+            }
+        ],
+        "Producer": [
+            {
+                "id": 1068,
+                "filter": "producer=1068",
+                "tag": "Peter Guber",
+                "tagKey": "5d7768277228e5001f1dd01b",
+                "thumb": "https://metadata-static.plex.tv/2/people/29a61cc78db4a46015f1829c064bacda.jpg"
+            },
+            {
+                "id": 1069,
+                "filter": "producer=1069",
+                "tag": "Jon Peters",
+                "tagKey": "5d7768277228e5001f1dd01c",
+                "thumb": "https://metadata-static.plex.tv/5/people/533233350fb84fe8fccbb641ccd80242.jpg"
+            }
+        ]
+    }
+}

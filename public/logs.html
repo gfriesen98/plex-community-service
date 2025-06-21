@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Mega CMD Logs</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈‍⬛</text></svg>" />
+    <style>
+        /* Reusing styles from your transfers page for consistency */
+        :root {
+            --bg: #181a1b;
+            --fg: #f1f1f1;
+            --table-bg: #232526;
+            --table-border: #333;
+            --th-bg: #222;
+            --success: #7fff7f;
+            --error: #ff7f7f;
+            --note-bg: #232526;
+            --note-border: #444;
+            --note-fg: #ffe58f;
+            --paused: #ffe58f;
+            --progress-bg: #333;
+            --progress-bar: #4caf50;
+            --progress-label: #fff;
+            --button-bg: #232526;
+            --button-fg: #f1f1f1;
+            --button-border: #444;
+            --button-hover: #333;
+            --input-bg: #232526;
+            --input-fg: #f1f1f1;
+            --input-border: #444;
+        }
+
+        body.light {
+            --bg: #f7f7f7;
+            --fg: #181a1b;
+            --table-bg: #fff;
+            --table-border: #ccc;
+            --th-bg: #f0f0f0;
+            --success: #228b22;
+            --error: #b22222;
+            --note-bg: #fffbe6;
+            --note-border: #ffe58f;
+            --note-fg: #8d6b00;
+            --paused: #b8860b;
+            --progress-bg: #eee;
+            --progress-bar: #4caf50;
+            --progress-label: #222;
+            --button-bg: #f7f7f7;
+            --button-fg: #181a1b;
+            --button-border: #bbb;
+            --button-hover: #e0e0e0;
+            --input-bg: #fff;
+            --input-fg: #181a1b;
+            --input-border: #bbb;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        h1 {
+            margin-bottom: 0.5em;
+        }
+
+        nav a {
+            color: var(--fg);
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 1em;
+            background: var(--table-bg);
+            color: var(--fg);
+        }
+
+        th,
+        td {
+            border: 1px solid var(--table-border);
+            padding: 0.5em;
+            text-align: left;
+        }
+
+        th {
+            background: var(--th-bg);
+        }
+
+        .success {
+            color: var(--success);
+        }
+
+        .error {
+            color: var(--error);
+        }
+
+        .filter-controls {
+            margin-bottom: 1.5em;
+            background: var(--note-bg);
+            border: 1px solid var(--note-border);
+            padding: 1em;
+            border-radius: 4px;
+        }
+
+        .filter-controls label {
+            margin-right: 1em;
+            font-size: 0.9em;
+        }
+
+        .filter-controls input[type="text"],
+        .filter-controls select {
+            background: var(--input-bg);
+            color: var(--input-fg);
+            border: 1px solid var(--input-border);
+            border-radius: 3px;
+            padding: 0.3em 0.5em;
+            margin-right: 0.5em;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+        }
+
+        #themeToggle {
+            float: right;
+            margin-top: 0.2em;
+            margin-bottom: 0.2em;
+            font-size: 0.95em;
+            padding: 0.2em 0.7em;
+            border-radius: 3px;
+            border: 1px solid var(--button-border);
+            background: var(--button-bg);
+            color: var(--button-fg);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+        }
+
+        #themeToggle:hover {
+            background: var(--button-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="themeToggle" title="Toggle light/dark mode">🌙 Dark</button>
+    <h1>🐈‍⬛ Mega CMD Logs</h1>
+    <nav>
+        <p><a href="/">Home</a> | <a href="/logs">Logs</a></p>
+    </nav>
+
+    <div class="filter-controls">
+        <label for="dateFilter">Date:</label>
+        <input type="text" id="dateFilter" placeholder="DD-MM-YYYY or tag (today, yesterday, all)">
+
+        <label for="typeFilter">Type:</label>
+        <select id="typeFilter">
+            <option value="all">All</option>
+            <option value="request">Request</option>
+            <option value="queue">Queue</option>
+            <option value="webhook">Webhook</option>
+            <option value="job">Job</option>
+            <!-- Add other types as needed -->
+        </select>
+
+        <label for="subtypeFilter">Subtype:</label>
+        <select id="subtypeFilter">
+            <option value="all">All</option>
+            <option value="success">Success</option>
+            <option value="error">Error</option>
+            <!-- Add other subtypes as needed -->
+        </select>
+
+        <label for="sortBy">Sort By:</label>
+        <select id="sortBy">
+            <option value="time">Time</option>
+            <option value="type">Type</option>
+            <option value="subtype">Subtype</option>
+        </select>
+
+        <label for="sortOrder">Sort Order:</label>
+        <select id="sortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+
+        <button id="fetchLogsBtn">Fetch Logs</button>
+    </div>
+
+    <h2>Log Entries</h2>
+
+    <table id="logTable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Type</th>
+                <th>Subtype</th>
+                <th>Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4">Select a date and click "Fetch Logs".</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const queryString = window.location.search;
+        const urlparams = new URLSearchParams(queryString);
+        const themeToggle = document.getElementById('themeToggle');
+        const dateFilterInput = document.getElementById('dateFilter');
+        const typeFilterSelect = document.getElementById('typeFilter');
+        const subtypeFilterSelect = document.getElementById('subtypeFilter');
+        const sortBySelect = document.getElementById('sortBy');
+        const sortOrderSelect = document.getElementById('sortOrder');
+        const fetchLogsBtn = document.getElementById('fetchLogsBtn');
+        const logTableBody = document.querySelector('#logTable tbody');
+
+        const type = urlparams.get('type');
+        const urlDate = urlparams.get('date');
+
+        if (type) {
+            typeFilterSelect.value = type;
+        }
+
+        if (urlDate) {
+            dateFilterInput.value = 'all';
+        }
+
+        // --- Theme Toggle Logic (Reused) ---
+        function setTheme(theme) {
+            document.body.className = theme;
+            localStorage.setItem('theme', theme);
+            themeToggle.textContent = theme === 'light' ? '☀️ Light' : '🌙 Dark';
+            themeToggle.title = theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode';
+        }
+
+        function toggleTheme() {
+            setTheme(document.body.className === 'light' ? 'dark' : 'light');
+        }
+
+        (function () {
+            const theme = localStorage.getItem('theme') || 'dark';
+            setTheme(theme);
+        })();
+
+        themeToggle.onclick = toggleTheme;
+        // --- End Theme Toggle Logic ---
+
+        // Function to fetch logs from the server
+        async function fetchLogs() {
+            const dateTag = dateFilterInput.value.trim();
+            const typeFilter = typeFilterSelect.value;
+            const subtypeFilter = subtypeFilterSelect.value;
+            const sortBy = sortBySelect.value;
+            const sortOrder = sortOrderSelect.value;
+
+            if (!dateTag) {
+                logTableBody.innerHTML = '<tr><td colspan="4" class="error">Please enter a date or tag.</td></tr>';
+                return;
+            }
+
+            logTableBody.innerHTML = '<tr><td colspan="4">Loading logs...</td></tr>'; // Loading message
+
+            try {
+                // Construct the API endpoint URL with query parameters
+                const apiUrl = `/api/log/${dateTag}?filterByType=${typeFilter}&filterBySubtype=${subtypeFilter}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
+                const res = await fetch(apiUrl);
+
+                if (!res.ok) {
+                    const errorData = await res.json();
+                    logTableBody.innerHTML = `<tr><td colspan="4" class="error">${errorData.error || 'Error fetching logs'}</td></tr>`;
+                    return;
+                }
+
+                const logs = await res.json();
+
+                renderLogsTable(logs);
+
+            } catch (error) {
+                console.error('Error fetching logs:', error);
+                logTableBody.innerHTML = '<tr><td colspan="4" class="error">An error occurred while fetching logs.</td></tr>';
+            }
+        }
+
+        // Function to render logs in the table
+        function renderLogsTable(logs) {
+            logTableBody.innerHTML = ''; // Clear existing rows
+
+            if (logs.length === 0) {
+                logTableBody.innerHTML = '<tr><td colspan="4">No logs found for the selected criteria.</td></tr>';
+                return;
+            }
+
+            logs.forEach(log => {
+                const subtypeClass = log.subtype === 'success' ? 'success' : (log.subtype === 'error' ? 'error' : '');
+                logTableBody.innerHTML += `
+                    <tr>
+                        <td>${log.time || ''}</td>
+                        <td>${log.type || ''}</td>
+                        <td class="${subtypeClass}">${log.subtype || ''}</td>
+                        <td>${JSON.stringify(log.info, null, 2) || ''}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Event listener for the Fetch Logs button
+        fetchLogsBtn.addEventListener('click', fetchLogs);
+
+        // Optional: Allow fetching logs by pressing Enter in the date input
+        dateFilterInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                fetchLogs();
+            }
+        });
+
+        // Optional: Initial fetch on page load (e.g., for today's logs)
+        if (!urlDate) dateFilterInput.value = 'today'; // Set default to 'today'
+        fetchLogs(); // Fetch logs on page load
+
+    </script>
+</body>
+
+</html>

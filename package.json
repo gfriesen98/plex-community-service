@@ -1,0 +1,37 @@
+{
+  "name": "plex-community-service",
+  "version": "1.3.0",
+  "description": "web interface for mega-cmd and plex discord notifier all-in-one",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "adapters": "node ./util/scripts/list-adapters.js",
+    "bot:deploy": "node ./discord_bot/deploy-commands.js",
+    "test:plex": "node ./test/test_plex.js",
+    "prod:start": "pm2 start index.js --name app && pm2 save",
+    "prod:stop": "pm2 stop app",
+    "prod:restart": "pm2 restart app",
+    "prod:resurrect": "pm2 resurrect",
+    "prod:logs": "pm2 logs app",
+    "prod:update": "pm2 update"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "cron": "^4.3.0",
+    "discord.js": "^14.20.0",
+    "express": "^5.1.0",
+    "form-data": "^4.0.2",
+    "multer": "^1.4.5-lts.2",
+    "systeminformation": "^5.25.11",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "pm2": "^6.0.8"
+  }
+}

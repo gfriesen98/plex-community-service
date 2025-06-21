@@ -1,0 +1,210 @@
+{
+    "event": "library.new",
+    "user": true,
+    "owner": true,
+    "Account": {
+        "id": 123456789,
+        "thumb": "https://test.plex.webhook/user/1234567890000",
+        "title": "test_username"
+    },
+    "Server": {
+        "title": "test_servername",
+        "uuid": "1234-123456-234553-3455"
+    },
+    "Metadata": {
+        "librarySectionType": "show",
+        "ratingKey": "24467",
+        "key": "/library/metadata/24467/children",
+        "guid": "plex://show/5d9c080f02391c001f57fe59",
+        "slug": "mobile-suit-gundam-iron-blooded-orphans",
+        "studio": "SUNRISE",
+        "type": "show",
+        "title": "Mobile Suit Gundam: Iron-Blooded Orphans",
+        "librarySectionTitle": "Anime",
+        "librarySectionID": 2,
+        "librarySectionKey": "/library/sections/2",
+        "originalTitle": "機動戦士ガンダム 鉄血のオルフェンズ",
+        "contentRating": "TV-MA",
+        "summary": "When Mikazuki Augus, a young member of a private security company known as the CGS, accepts a mission to protect a young woman seeking to liberate the Martian city of Chryse from Earth’s rule, he sets off a chain of events that threatens to send the galaxy back to war.",
+        "index": 1,
+        "audienceRating": 7.5,
+        "year": 2015,
+        "thumb": "/library/metadata/24467/thumb/1746593038",
+        "art": "/library/metadata/24467/art/1746593038",
+        "theme": "/library/metadata/24467/theme/1746593038",
+        "duration": 1500000,
+        "originallyAvailableAt": "2015-10-04",
+        "leafCount": 50,
+        "viewedLeafCount": 0,
+        "childCount": 2,
+        "addedAt": 1746593031,
+        "updatedAt": 1746593038,
+        "audienceRatingImage": "themoviedb://image.rating",
+        "Image": [
+            {
+                "alt": "Mobile Suit Gundam: Iron-Blooded Orphans",
+                "type": "coverPoster",
+                "url": "/library/metadata/24467/thumb/1746593038"
+            },
+            {
+                "alt": "Mobile Suit Gundam: Iron-Blooded Orphans",
+                "type": "background",
+                "url": "/library/metadata/24467/art/1746593038"
+            },
+            {
+                "alt": "Mobile Suit Gundam: Iron-Blooded Orphans",
+                "type": "clearLogo",
+                "url": "/library/metadata/24467/clearLogo/1746593038"
+            }
+        ],
+        "UltraBlurColors": {
+            "topLeft": "192c52",
+            "topRight": "296192",
+            "bottomRight": "3953a1",
+            "bottomLeft": "263475"
+        },
+        "Genre": [
+            {
+                "id": 261,
+                "filter": "genre=261",
+                "tag": "Animation"
+            },
+            {
+                "id": 262,
+                "filter": "genre=262",
+                "tag": "Action"
+            },
+            {
+                "id": 130,
+                "filter": "genre=130",
+                "tag": "Drama"
+            },
+            {
+                "id": 5,
+                "filter": "genre=5",
+                "tag": "Science Fiction"
+            },
+            {
+                "id": 263,
+                "filter": "genre=263",
+                "tag": "Anime"
+            },
+            {
+                "id": 27388,
+                "filter": "genre=27388",
+                "tag": "War & Politics"
+            },
+            {
+                "id": 20397,
+                "filter": "genre=20397",
+                "tag": "Sci-Fi & Fantasy"
+            }
+        ],
+        "Country": [
+            {
+                "id": 288,
+                "filter": "country=288",
+                "tag": "Japan"
+            }
+        ],
+        "Guid": [
+            {
+                "id": "imdb://tt5344382"
+            },
+            {
+                "id": "tmdb://64375"
+            },
+            {
+                "id": "tvdb://299497"
+            }
+        ],
+        "Rating": [
+            {
+                "image": "imdb://image.rating",
+                "value": 7.9,
+                "type": "audience"
+            },
+            {
+                "image": "rottentomatoes://image.rating.upright",
+                "value": 10,
+                "type": "audience"
+            },
+            {
+                "image": "themoviedb://image.rating",
+                "value": 7.5,
+                "type": "audience"
+            }
+        ],
+        "Role": [
+            {
+                "id": 22523,
+                "filter": "actor=22523",
+                "tag": "Kengo Kawanishi",
+                "tagKey": "5d7768b96f6af7001ee5bceb",
+                "role": "Mikazuki Augus (voice)",
+                "thumb": "https://metadata-static.plex.tv/3/people/337518fa5374268aa45ba53b67597cec.jpg"
+            },
+            {
+                "id": 21039,
+                "filter": "actor=21039",
+                "tag": "Yoshimasa Hosoya",
+                "tagKey": "5d7769e723d5a3001f4fdf2b",
+                "role": "Orga Itsuka  (voice)",
+                "thumb": "https://metadata-static.plex.tv/2/people/2cba74854c6e27bc6a610c2f19c599eb.jpg"
+            },
+            {
+                "id": 24645,
+                "filter": "actor=24645",
+                "tag": "Yuka Terasaki",
+                "tagKey": "5d7768b3431c830024c139d7",
+                "role": "Kudelia Aina Bernstein (voice)",
+                "thumb": "https://image.tmdb.org/t/p/original/hMorHtbCmbDkznBr6P71qHk2rSL.jpg"
+            },
+            {
+                "id": 63130,
+                "filter": "actor=63130",
+                "tag": "Hisako Kanemoto",
+                "tagKey": "5f4004fa8642250042808f7e",
+                "role": "Atra Mixta (voice)",
+                "thumb": "https://metadata-static.plex.tv/9/cc68393fae/people/90fdd1845e096ee8952e214fc081c024.jpg"
+            },
+            {
+                "id": 20850,
+                "filter": "actor=20850",
+                "tag": "Yuuichirou Umehara",
+                "tagKey": "5d9c091408fddd001f2a7214",
+                "role": "Eugene Seven Stark (voice)",
+                "thumb": "https://metadata-static.plex.tv/e/people/eb1e695f9c4568d918c6ac0e584a78ab.jpg"
+            },
+            {
+                "id": 25463,
+                "filter": "actor=25463",
+                "tag": "Kohei Amasaki",
+                "tagKey": "5d9c08d2ffd9ef001e99afeb",
+                "role": "Takaki Uno (voice)",
+                "thumb": "https://metadata-static.plex.tv/people/5d9c08d2ffd9ef001e99afeb.jpg"
+            },
+            {
+                "id": 22524,
+                "filter": "actor=22524",
+                "tag": "Taishi Murata",
+                "tagKey": "5d776c53ad5437001f7bac46",
+                "role": "Norba Sino (voice)",
+                "thumb": "https://metadata-static.plex.tv/b/people/b5b7342e0ee53ebe27334420cd28c9c7.jpg"
+            },
+            {
+                "id": 30755,
+                "filter": "actor=30755",
+                "tag": "Natsuki Hanae",
+                "tagKey": "5d776aa79ab5440021501ac8",
+                "role": "Biscuit Griffon (voice)",
+                "thumb": "https://metadata-static.plex.tv/1/people/1389be21fb6aa62e8cd0bef6f3bc460d.jpg"
+            }
+        ],
+        "Location": [
+            {
+                "path": "/path/to/media/location"
+            }
+        ]
+    }
+}

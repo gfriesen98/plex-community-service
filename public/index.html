@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>mega-cmd</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈‍⬛</text></svg>" />
+    <style>
+        /* Add these mobile-responsive improvements to your existing CSS */
+
+        /* Mobile-first responsive design */
+        @media (max-width: 768px) {
+            body {
+                margin: 1em;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 0.5em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            h4 {
+                font-size: 1.1em;
+                margin: 0.5em 0;
+            }
+
+            /* Theme toggle button */
+            #themeToggle {
+                float: none;
+                display: block;
+                width: 100%;
+                margin: 0 0 1em 0;
+                text-align: center;
+            }
+
+            /* Form improvements */
+            form {
+                margin-bottom: 1.5em;
+            }
+
+            form label {
+                display: block;
+                margin-bottom: 0.5em;
+                font-weight: bold;
+            }
+
+            input[type="text"],
+            select {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                margin-right: 0;
+                margin-bottom: 0.5em;
+                padding: 0.5em;
+                font-size: 16px;
+                /* Prevents zoom on iOS */
+            }
+
+            button[type="submit"] {
+                width: 100%;
+                padding: 0.7em;
+                font-size: 16px;
+                margin-top: 0.5em;
+            }
+
+            /* Action buttons */
+            .action-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5em;
+                margin-bottom: 1em;
+            }
+
+            button.action {
+                flex: 1;
+                min-width: calc(50% - 0.25em);
+                padding: 0.5em;
+                font-size: 14px;
+                margin: 0;
+            }
+
+            /* Column controls */
+            #columnControls {
+                margin-bottom: 1em;
+            }
+
+            #columnControls label {
+                display: block;
+                margin: 0.3em 0;
+                font-size: 14px;
+            }
+
+            /* Filter input */
+            #filterInput {
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 1em;
+                padding: 0.5em;
+                font-size: 16px;
+            }
+
+            /* Line limit select */
+            #lineLimit {
+                width: 100%;
+                margin-bottom: 1em;
+                padding: 0.5em;
+                font-size: 16px;
+            }
+
+            /* Table improvements */
+            table {
+                font-size: 12px;
+                width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            table thead,
+            table tbody,
+            table tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            th,
+            td {
+                padding: 0.3em 0.2em;
+                word-wrap: break-word;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Adjust column widths for mobile */
+            th:nth-child(1),
+            td:nth-child(1) {
+                width: 8%;
+            }
+
+            /* ID */
+            th:nth-child(2),
+            td:nth-child(2) {
+                width: 8%;
+            }
+
+            /* Tag */
+            th:nth-child(3),
+            td:nth-child(3) {
+                width: 10%;
+            }
+
+            /* Type */
+            th:nth-child(4),
+            td:nth-child(4) {
+                width: 25%;
+            }
+
+            /* Filename */
+            th:nth-child(5),
+            td:nth-child(5) {
+                width: 15%;
+            }
+
+            /* Progress */
+            th:nth-child(6),
+            td:nth-child(6) {
+                width: 10%;
+            }
+
+            /* Size */
+            th:nth-child(7),
+            td:nth-child(7) {
+                width: 10%;
+            }
+
+            /* Status */
+            th:nth-child(8),
+            td:nth-child(8) {
+                width: 20%;
+            }
+
+            /* Path */
+            th:nth-child(9),
+            td:nth-child(9) {
+                width: 14%;
+            }
+
+            /* Actions */
+
+            /* Progress bar adjustments */
+            .progress-container {
+                width: 80px;
+                height: 16px;
+            }
+
+            .progress-label {
+                font-size: 10px;
+                line-height: 16px;
+            }
+
+            /* Action buttons in table */
+            td button.action {
+                padding: 0.2em 0.3em;
+                font-size: 10px;
+                margin: 0.1em;
+                min-width: auto;
+                flex: none;
+            }
+
+            /* Notes and messages */
+            .note {
+                padding: 0.7em;
+                font-size: 13px;
+                margin-bottom: 1em;
+            }
+
+            .paused {
+                font-size: 14px;
+                margin-bottom: 1em;
+            }
+
+            /* Speed display */
+            #speedDiv {
+                font-size: 13px;
+                margin-bottom: 1em;
+            }
+
+            /* Navigation */
+            nav p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            nav a {
+                display: inline-block;
+                padding: 0.2em 0;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            body {
+                margin: 0.5em;
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+            }
+
+            /* Stack action buttons vertically on very small screens */
+            button.action {
+                min-width: 100%;
+                margin-bottom: 0.3em;
+            }
+
+            /* Hide less important columns by default on very small screens */
+            .mobile-hide-id th:nth-child(1),
+            .mobile-hide-id td:nth-child(1),
+            .mobile-hide-tag th:nth-child(2),
+            .mobile-hide-tag td:nth-child(2),
+            .mobile-hide-type th:nth-child(3),
+            .mobile-hide-type td:nth-child(3) {
+                display: none;
+            }
+
+            table {
+                font-size: 11px;
+            }
+
+            th,
+            td {
+                padding: 0.2em 0.1em;
+            }
+
+            /* Adjust remaining column widths */
+            th:nth-child(4),
+            td:nth-child(4) {
+                width: 30%;
+            }
+
+            /* Filename */
+            th:nth-child(5),
+            td:nth-child(5) {
+                width: 20%;
+            }
+
+            /* Progress */
+            th:nth-child(6),
+            td:nth-child(6) {
+                width: 12%;
+            }
+
+            /* Size */
+            th:nth-child(7),
+            td:nth-child(7) {
+                width: 12%;
+            }
+
+            /* Status */
+            th:nth-child(8),
+            td:nth-child(8) {
+                width: 20%;
+            }
+
+            /* Path */
+            th:nth-child(9),
+            td:nth-child(9) {
+                width: 16%;
+            }
+
+            /* Actions */
+
+            .progress-container {
+                width: 60px;
+                height: 14px;
+            }
+
+            .progress-label {
+                font-size: 9px;
+                line-height: 14px;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-width: 768px) and (orientation: landscape) {
+            body {
+                margin: 0.5em;
+            }
+
+            #themeToggle {
+                float: right;
+                width: auto;
+                display: inline-block;
+            }
+
+            .action-buttons {
+                justify-content: flex-start;
+            }
+
+            button.action {
+                flex: none;
+                min-width: auto;
+                padding: 0.4em 0.8em;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+
+            button,
+            input,
+            select {
+                min-height: 44px;
+                /* Apple's recommended touch target size */
+            }
+
+            button.action {
+                padding: 0.5em 0.7em;
+                margin: 0.2em;
+            }
+
+            td button.action {
+                min-height: 32px;
+                padding: 0.3em 0.5em;
+            }
+        }
+
+        :root {
+            --bg: #181a1b;
+            --fg: #f1f1f1;
+            --table-bg: #232526;
+            --table-border: #333;
+            --th-bg: #222;
+            --success: #7fff7f;
+            --error: #ff7f7f;
+            --note-bg: #232526;
+            --note-border: #444;
+            --note-fg: #ffe58f;
+            --paused: #ffe58f;
+            --progress-bg: #333;
+            --progress-bar: #4caf50;
+            --progress-label: #fff;
+            --button-bg: #232526;
+            --button-fg: #f1f1f1;
+            --button-border: #444;
+            --button-hover: #333;
+            --input-bg: #232526;
+            --input-fg: #f1f1f1;
+            --input-border: #444;
+        }
+
+        body.light {
+            --bg: #f7f7f7;
+            --fg: #181a1b;
+            --table-bg: #fff;
+            --table-border: #ccc;
+            --th-bg: #f0f0f0;
+            --success: #228b22;
+            --error: #b22222;
+            --note-bg: #fffbe6;
+            --note-border: #ffe58f;
+            --note-fg: #8d6b00;
+            --paused: #b8860b;
+            --progress-bg: #eee;
+            --progress-bar: #4caf50;
+            --progress-label: #222;
+            --button-bg: #f7f7f7;
+            --button-fg: #181a1b;
+            --button-border: #bbb;
+            --button-hover: #e0e0e0;
+            --input-bg: #fff;
+            --input-fg: #181a1b;
+            --input-border: #bbb;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        h1 {
+            margin-bottom: 0.5em;
+        }
+
+        form {
+            margin-bottom: 2em;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            background: var(--input-bg);
+            color: var(--input-fg);
+            border: 1px solid var(--input-border);
+            border-radius: 3px;
+            padding: 0.3em 0.5em;
+            margin-right: 0.5em;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 1em;
+            background: var(--table-bg);
+            color: var(--fg);
+        }
+
+        th,
+        td {
+            border: 1px solid var(--table-border);
+            padding: 0.5em;
+            text-align: left;
+        }
+
+        th {
+            background: var(--th-bg);
+        }
+
+        nav a {
+            color: var(--fg);
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .success {
+            color: var(--success);
+        }
+
+        .error {
+            color: var(--error);
+        }
+
+        .progress-container {
+            width: 120px;
+            background: var(--progress-bg);
+            border-radius: 4px;
+            /* Corrected border-radius */
+            height: 18px;
+            position: relative;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--progress-bar);
+            border-radius: 4px;
+            /* Corrected border-radius */
+            transition: width 0.3s;
+        }
+
+        .progress-bar--paused {
+            /* Corrected class name and syntax */
+            background: var(--paused);
+        }
+
+        .progress-label {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            font-size: 12px;
+            line-height: 18px;
+            color: var(--progress-label);
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        .paused {
+            color: var(--paused);
+            font-weight: bold;
+            margin-bottom: 1em;
+        }
+
+        .note {
+            background: var(--note-bg);
+            border: 1px solid var(--note-border);
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 4px;
+            color: var(--note-fg);
+        }
+
+        button.action,
+        #themeToggle {
+            margin-right: 0.3em;
+            margin-bottom: 0.2em;
+            font-size: 0.95em;
+            padding: 0.2em 0.7em;
+            border-radius: 3px;
+            border: 1px solid var(--button-border);
+            background: var(--button-bg);
+            color: var(--button-fg);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+        }
+
+        button.action:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        button.action:hover:not(:disabled),
+        #themeToggle:hover {
+            background: var(--button-hover);
+        }
+
+        #themeToggle {
+            float: right;
+            margin-top: 0.2em;
+            margin-bottom: 0.2em;
+        }
+
+        /* CSS to hide columns */
+        .hide-id th:nth-child(1),
+        .hide-id td:nth-child(1) {
+            display: none;
+        }
+
+        .hide-tag th:nth-child(2),
+        .hide-tag td:nth-child(2) {
+            display: none;
+        }
+
+        .hide-type th:nth-child(3),
+        .hide-type td:nth-child(3) {
+            display: none;
+        }
+
+        .hide-filename th:nth-child(4),
+        .hide-filename td:nth-child(4) {
+            display: none;
+        }
+
+        .hide-progress th:nth-child(5),
+        .hide-progress td:nth-child(5) {
+            display: none;
+        }
+
+        .hide-size th:nth-child(6),
+        .hide-size td:nth-child(6) {
+            display: none;
+        }
+
+        .hide-status th:nth-child(7),
+        .hide-status td:nth-child(7) {
+            display: none;
+        }
+
+        .hide-path th:nth-child(8),
+        .hide-path td:nth-child(8) {
+            display: none;
+        }
+
+        .hide-actions th:nth-child(8),
+        .hide-actions td:nth-child(8) {
+            display: none;
+        }
+
+        #columnControls {
+            margin-bottom: 1em;
+        }
+
+        #columnControls label {
+            margin-right: 1em;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="themeToggle" title="Toggle light/dark mode">🌙 Dark</button>
+    <h1>🐈‍⬛ Mega CMD</h1>
+    <nav>
+        <p><a href="/">Home</a> | <a href="/logs">Logs</a> | <a href="/logs?type=request&date=all">Requests</a></p>
+    </nav>
+    <h4>Frontend for managing Mega transfers with mega-cmd</h4>
+    <div class="note">
+        <strong>Note on "Pause All" behaviour:</strong><br>
+        The <code>all_downloads_paused</code> flag indicates that all transfers are currently paused.<br>
+        <br>
+        <strong>MEGA CMD Quirk:</strong> If you pause a single transfer, then use "resume all", that transfer will
+        <em>remain paused</em>—it must be resumed individually. Use the per-transfer "Resume" button to resume such
+        transfers.
+    </div>
+
+    <form id="downloadForm">
+        <label>
+            MEGA URL:
+            <input type="text" id="url" required placeholder="https://mega.nz/..." />
+        </label>
+        <label>
+            Output Path:
+            <select id="outputPath" required>
+                <!-- <option value="/mnt/gserver/Media/staging">gserver/Media/staging</option>
+                <option value="~/downloads">~/downloads</option> -->
+            </select>
+        </label>
+
+        <button type="submit">Add Download</button>
+        <div id="formMsg"></div>
+    </form>
+
+    <div id="pausedMsg"></div>
+
+    <div class="action-buttons">
+        <button class="action" id="pauseAllBtn">Pause All</button>
+        <button class="action" id="resumeAllBtn">Resume All</button>
+        <button class="action" id="cancelAllBtn">Cancel All</button>
+    </div>
+
+    <label>
+        Output Limit:
+        <select id="lineLimit">
+            <option value="0">Unlimited</option>
+            <option value="10">Ten</option>
+            <option value="20">Twenty</option>
+            <option value="30">Thirty</option>
+            <option value="40">Fourty</option>
+            <option value="50">Fifty</option>
+        </select>
+    </label>
+
+    <h2>Current Transfers</h2>
+
+    <div id="columnControls">
+        Show/Hide Columns:
+        <label><input type="checkbox" class="column-toggle" data-column="id" checked> ID</label>
+        <label><input type="checkbox" class="column-toggle" data-column="tag" checked> Tag #</label>
+        <label><input type="checkbox" class="column-toggle" data-column="type" checked> Type</label>
+        <label><input type="checkbox" class="column-toggle" data-column="filename" checked> File Name</label>
+        <label><input type="checkbox" class="column-toggle" data-column="progress" checked> Progress</label>
+        <label><input type="checkbox" class="column-toggle" data-column="size" checked> Size</label>
+        <label><input type="checkbox" class="column-toggle" data-column="status" checked> Status</label>
+        <label><input type="checkbox" class="column-toggle" data-column="path" checked> Path</label>
+        <label><input type="checkbox" class="column-toggle" data-column="actions" checked> Actions</label>
+    </div>
+
+    <div>
+        <label for="filterInput">Filter:</label>
+        <input type="text" id="filterInput" placeholder="Type to filter...">
+    </div>
+
+    <div id="speedDiv" hidden>
+        <p>Adapter Speed: ⏬<span id="download"></span> | ⏫<span id="upload"></span></p>
+    </div>
+
+
+    <table id="transfersTable">
+        <thead>
+            <tr>
+                <th data-column="id">ID</th>
+                <th data-column="tag">Tag #</th>
+                <th data-column="type">Type</th>
+                <th data-column="filename">File Name</th>
+                <th data-column="progress">Progress</th>
+                <th data-column="size">Size</th>
+                <th data-column="status">Status</th>
+                <th data-column="path">Path</th>
+                <th data-column="actions">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="7">Loading...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const limit = document.getElementById('lineLimit');
+        const transfersTable = document.getElementById('transfersTable');
+        const columnToggles = document.querySelectorAll('.column-toggle');
+        const filterInput = document.getElementById('filterInput'); // Get the filter input
+        const outputPath = document.getElementById("outputPath");
+        const localStorageColumnKey = 'mega-cmd-column-visibility';
+        var speedMonitor = null;
+        var speedMonitorServerDisabled = false;
+
+        function setTheme(theme) {
+            document.body.className = theme;
+            localStorage.setItem('theme', theme);
+            document.getElementById('themeToggle').textContent =
+                theme === 'light' ? '☀️ Light' : '🌙 Dark';
+            document.getElementById('themeToggle').title =
+                theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode';
+        }
+
+        function toggleTheme() {
+            setTheme(document.body.className === 'light' ? 'dark' : 'light');
+        }
+
+        // Function to apply column visibility based on checkbox state
+        function applyColumnVisibility() {
+            const bodyClassList = document.body.classList;
+            const columnVisibility = {};
+
+            columnToggles.forEach(toggle => {
+                const column = toggle.dataset.column;
+                const isChecked = toggle.checked;
+                columnVisibility[column] = isChecked;
+
+                // Add or remove CSS class to hide column
+                if (isChecked) {
+                    bodyClassList.remove(`hide-${column}`);
+                } else {
+                    bodyClassList.add(`hide-${column}`);
+                }
+            });
+
+            // Save visibility state to localStorage
+            localStorage.setItem(localStorageColumnKey, JSON.stringify(columnVisibility));
+
+            // Re-apply filter after column visibility changes
+            filterTable();
+        }
+
+        // Function to load column visibility from localStorage
+        function loadColumnVisibility() {
+            const savedVisibility = localStorage.getItem(localStorageColumnKey);
+            if (savedVisibility) {
+                const columnVisibility = JSON.parse(savedVisibility);
+                columnToggles.forEach(toggle => {
+                    const column = toggle.dataset.column;
+                    if (columnVisibility.hasOwnProperty(column)) {
+                        toggle.checked = columnVisibility[column];
+                    }
+                });
+            }
+            // Apply visibility based on loaded state (or default if no saved state)
+            applyColumnVisibility();
+        }
+
+        function clearSpeedMonitor() {
+            if (speedMonitor !== null) {
+                clearInterval(speedMonitor);
+                speedMonitor = null;
+                document.getElementById('speedDiv').hidden = true;
+            }
+        }
+
+        // Function to filter table rows based on filter input and visible columns
+        function filterTable() {
+            const filterText = filterInput.value.toLowerCase();
+            const rows = transfersTable.querySelectorAll('tbody tr');
+
+            // Get the list of visible columns based on the checkbox state
+            const visibleColumns = Array.from(columnToggles)
+                .filter(toggle => toggle.checked)
+                .map(toggle => toggle.dataset.column);
+
+            rows.forEach(row => {
+                // Skip the "No active transfers" row
+                if (row.classList.contains('error') || row.cells.length === 1 && row.cells[0].colSpan === 7) {
+                    row.style.display = ''; // Always show the loading or no transfers message
+                    return;
+                }
+
+                let rowMatchesFilter = false;
+                // Iterate through cells of visible columns
+                visibleColumns.forEach(column => {
+                    const cell = row.querySelector(`td[data-column="${column}"]`);
+                    if (cell) {
+                        const cellText = cell.textContent.toLowerCase();
+                        if (cellText.includes(filterText)) {
+                            rowMatchesFilter = true;
+                        }
+                    }
+                });
+
+                if (filterText === '' || rowMatchesFilter) {
+                    row.style.display = ''; // Show the row
+                } else {
+                    row.style.display = 'none'; // Hide the row
+                }
+            });
+        }
+
+
+        // On load: set theme from localStorage or default to dark
+        // load some settings if they were changed
+        (async function () {
+            const theme = localStorage.getItem('theme') || 'dark';
+            setTheme(theme);
+
+            const changedLimit = localStorage.getItem('limit');
+            if (changedLimit) limit.value = changedLimit;
+
+            loadColumnVisibility(); // Load column visibility on page load
+
+            await fetchOutputPaths();
+        })();
+
+        async function fetchOutputPaths() {
+            let saved = localStorage.getItem('labels');
+
+            function makeListOption(d) {
+                outputPath.innerHTML = "";
+                for (let i = 0; i < d.length; i++) {
+                    // <!-- <option value="/mnt/gserver/Media/staging">gserver/Media/staging</option>
+                    outputPath.innerHTML += `<option value="${d[i]}">${d[i]}</option>`;
+                }
+            }
+
+            if (saved) {
+                saved = JSON.parse(saved);
+                makeListOption(saved);
+            }
+
+            try {
+                const response = await fetch('/api/options');
+                const data = await response.json();
+                const { outputPathLabels } = data.options;
+
+                if (!saved) {
+                    localStorage.setItem('labels', JSON.stringify(outputPathLabels));
+                    makeListOption(outputPathLabels);
+                } else {
+                    // check if saved labels need to be updated
+                    if (saved.length < outputPathLabels.length) {
+                        localStorage.setItem('labels', JSON.stringify(outputPathLabels));
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+
+        document.getElementById('themeToggle').onclick = toggleTheme;
+        limit.addEventListener('change', () => {
+            localStorage.setItem('limit', limit.value.trim());
+            // No need to call fetchTransfers here, setInterval will handle it
+        });
+
+        // Add event listeners to column toggle checkboxes
+        columnToggles.forEach(toggle => {
+            toggle.addEventListener('change', applyColumnVisibility);
+        });
+
+        // Add event listener to the filter input
+        filterInput.addEventListener('input', filterTable);
+
+
+        // Helper to render a progress bar (keep the same)
+        function renderProgressBar(percent, isPaused) {
+            if (typeof percent !== 'number' || isNaN(percent)) {
+                return '';
+            }
+            const safePercent = Math.max(0, Math.min(100, percent));
+            const progressBarClass = isPaused ? 'progress-bar progress-bar--paused' : 'progress-bar';
+
+            return `
+        <div class="progress-container">
+          <div class="${progressBarClass}" style="width: ${safePercent}%;"></div>
+          <div class="progress-label">${safePercent.toFixed(2)}%</div>
+        </div>
+      `;
+        }
+
+
+        // Helper to send a POST to an action endpoint (keep the same, with fetchTransfers call)
+        async function sendAction(endpoint) {
+            try {
+                const res = await fetch(endpoint, { method: 'POST' });
+                if (!res.ok) throw new Error('Action failed');
+                await fetchTransfers();
+            } catch (err) {
+                alert('Failed to perform action: ' + endpoint);
+            }
+        }
+
+        async function fetchSpeeds() {
+            try {
+                const res = await fetch('/api/network/speed');
+                if (res.status === 403) {
+                    speedMonitorServerDisabled = true;
+                    clearSpeedMonitor();
+                }
+                const { download, upload } = await res.json();
+                document.getElementById('speedDiv').hidden = false
+                document.getElementById('download').innerText = download;
+                document.getElementById('upload').innerText = upload;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Polling function for transfers (modified to include paused state in progress bar and call filter)
+        async function fetchTransfers() {
+            try {
+                const limitParam = limit.value.trim();
+                const res = await fetch(`/api/transfers?limit=${limitParam}`);
+                const data = await res.json();
+                const tbody = document.querySelector('#transfersTable tbody');
+                const pausedMsg = document.getElementById('pausedMsg');
+                tbody.innerHTML = ''; // Clear existing rows
+                pausedMsg.textContent = '';
+
+                // Show paused message if all downloads are paused
+                if (data.json && data.all_downloads_paused) {
+                    pausedMsg.textContent = 'All downloads and uploads are paused. Transfers may show as ACTIVE still.';
+                    pausedMsg.className = 'paused';
+                    clearSpeedMonitor();
+                } else {
+                    pausedMsg.textContent = '';
+                    pausedMsg.className = '';
+                }
+
+                const transfers = (data && data.json) || [];
+                if (transfers.length === 0) {
+                    clearSpeedMonitor();
+                    tbody.innerHTML = '<tr><td colspan="9">No active transfers.</td></tr>';
+                } else {
+                    if (data.all_downloads_paused !== true) {
+                        if (speedMonitor === null) {
+                            if (!speedMonitorServerDisabled) {
+                                speedMonitor = setInterval(fetchSpeeds, 2000);
+                            }
+                        }
+                    } else {
+                        clearSpeedMonitor();
+                    }
+
+                    for (const t of transfers) {
+                        const tag = t.tag?.number;
+                        const isPaused = t.state?.text === 'PAUSED';
+                        const isActive = t.state?.text === 'ACTIVE';
+                        const isQueued = t.state?.text === 'QUEUED';
+                        tbody.innerHTML += `
+              <tr>
+                <th data-column="id">${t.id}</th>
+                <th data-column="tag">${t.tag?.number}</th>
+                <td data-column="type">${t.type?.text || ''}</td>
+                <td data-column="filename">${t.destinyPath?.filename || ''}</td>
+                <td data-column="progress">
+                  ${renderProgressBar(t.progress?.percent, isPaused)}
+                  <div style="font-size:11px;color:#666;">
+                    ${typeof t.progress?.percent === 'number' ? '' : (t.progress?.text || '')}
+                  </div>
+                </td>
+                <td data-column="size">${t.progress?.size || ''}</td>
+                <td data-column="status">${t.state?.text || ''}</td>
+                <td data-column="path" title="${t.destinyPath?.text || ''}">
+                  ${t.destinyPath?.text ? t.destinyPath.text.split('/').slice(0, -1).join('/') : ''}
+                </td>
+                <td data-column="actions">
+                  <button class="action" onclick="sendAction('/api/pause/${tag}')" ${isPaused ? 'disabled' : ''}>Pause</button>
+                  <button class="action" onclick="sendAction('/api/resume/${tag}')" ${isActive || isQueued ? 'disabled' : ''}>Resume</button>
+                  <button class="action" onclick="if(confirm('Cancel this transfer?')) sendAction('/api/cancel/${tag}')">Cancel</button>
+                </td>
+              </tr>
+            `;
+                    }
+                }
+                // Re-apply column visibility and filter after rendering transfers
+                applyColumnVisibility(); // This will also call filterTable()
+                // filterTable(); // Called within applyColumnVisibility
+            } catch (err) {
+                const tbody = document.querySelector('#transfersTable tbody');
+                tbody.innerHTML = `<tr><td colspan="7" class="error">Error loading transfers</td></tr>`;
+                filterTable(); // Ensure the error message is visible even with a filter
+            }
+        }
+
+        // Initial fetch and polling every 2 seconds
+        fetchTransfers();
+        setInterval(fetchTransfers, 2000);
+
+        // Handle download form submission (keep the same)
+        document.getElementById('downloadForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const url = document.getElementById('url').value.trim();
+            const outputPathLabel = document.getElementById('outputPath').value.trim();
+            const msg = document.getElementById('formMsg');
+            msg.textContent = '';
+            msg.className = '';
+            if (!url || !outputPathLabel) {
+                msg.textContent = 'Please enter both URL and output path.';
+                msg.className = 'error';
+                return;
+            }
+            try {
+                const url_arr = url.split(/\s+/ig);
+                const res = await fetch('/api/queue', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url_arr, outputPathLabel }),
+                });
+                const data = await res.json();
+                const successful_queues = data.successful_queues;
+                const unsuccessful_queues = data.unsuccessful_queues;
+                if (res.ok) {
+                    let message = ``;
+
+                    if (successful_queues.length > 0) {
+                        message += `<span class="success">${successful_queues.length} Download${successful_queues.length > 1 ? 's' : ''} started!</span>`;
+                    } else {
+                        message += `<span class="success">0 Downloads started.</span>`;
+                    }
+
+                    if (unsuccessful_queues.length > 0) {
+                        message += `<span class="error">${message.length > 0 ?? ' '}${unsuccessful_queues.length} Downloads failed to queue.</span>`;
+                    }
+
+                    msg.innerHTML = message || 'Error queueing downloads. This message was not built as expected...';
+                } else {
+                    msg.textContent = data.error || 'Failed to start download';
+                    msg.className = 'error';
+                }
+            } catch (err) {
+                msg.textContent = 'Network error.';
+                msg.className = 'error';
+            }
+        };
+
+        function openTextWindow(data) {
+            const dataString = JSON.stringify(data, null, 2);
+            const newWindow = window.open("", "_blank");
+            newWindow.document.write("<p>" + dataString + "</p>");
+        }
+
+        // All transfers action buttons (keep the same)
+        document.getElementById('pauseAllBtn').onclick = () => sendAction('/api/pauseAll');
+        document.getElementById('resumeAllBtn').onclick = () => sendAction('/api/resumeAll');
+        document.getElementById('cancelAllBtn').onclick = () => {
+            if (confirm('Cancel ALL transfers?')) sendAction('/api/cancelAll');
+        };
+        
+        // Add this to your existing JavaScript
+        function handleMobileColumnVisibility() {
+            if (window.innerWidth <= 480) {
+                document.body.classList.add('mobile-hide-id', 'mobile-hide-tag', 'mobile-hide-type');
+            } else {
+                document.body.classList.remove('mobile-hide-id', 'mobile-hide-tag', 'mobile-hide-type');
+            }
+        }
+
+        // Call on load and resize
+        window.addEventListener('load', handleMobileColumnVisibility);
+        window.addEventListener('resize', handleMobileColumnVisibility);
+    </script>
+</body>
+
+</html>

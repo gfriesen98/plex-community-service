@@ -1,0 +1,528 @@
+{
+    "event": "media.pause",
+    "user": false,
+    "owner": true,
+    "Account": {
+        "id": 1234456789,
+        "thumb": "https://plex.tv/users/0123456789/avatar?c=1746600079",
+        "title": "User Name"
+    },
+    "Server": {
+        "title": "server name",
+        "uuid": "1234567890987654321"
+    },
+    "Player": {
+        "local": false,
+        "publicAddress": "1.1.1.1",
+        "title": "TITLE",
+        "uuid": "12345678-com-plexapp-android"
+    },
+    "Metadata": {
+        "librarySectionType": "show",
+        "ratingKey": "23556",
+        "key": "/library/metadata/23556",
+        "parentRatingKey": "23554",
+        "grandparentRatingKey": "23553",
+        "guid": "plex://episode/67401e008ed664b364e4eb82",
+        "parentGuid": "plex://season/66047594f2781fe94954a72a",
+        "grandparentGuid": "plex://show/66047594f2781fe94954a721",
+        "grandparentSlug": "the-pitt",
+        "type": "episode",
+        "title": "8:00 A.M.",
+        "grandparentKey": "/library/metadata/23553",
+        "parentKey": "/library/metadata/23554",
+        "librarySectionTitle": "TV Shows",
+        "librarySectionID": 3,
+        "librarySectionKey": "/library/sections/3",
+        "grandparentTitle": "The Pitt",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Robby helps siblings navigate their elderly father's end of life care. Later, Samira fends off cops targeting a woman with a misunderstood condition.",
+        "index": 2,
+        "parentIndex": 1,
+        "audienceRating": 8,
+        "year": 2025,
+        "thumb": "/library/metadata/23556/thumb/1745788688",
+        "grandparentThumb": "/library/metadata/23553/thumb/1745788688",
+        "duration": 3060000,
+        "originallyAvailableAt": "2025-01-09",
+        "addedAt": 1745788647,
+        "updatedAt": 1745788688,
+        "audienceRatingImage": "themoviedb://image.rating",
+        "Image": [
+            {
+                "alt": "8:00 A.M.",
+                "type": "coverPoster",
+                "url": "/library/metadata/23553/thumb/1745788688"
+            },
+            {
+                "alt": "8:00 A.M.",
+                "type": "snapshot",
+                "url": "/library/metadata/23556/thumb/1745788688"
+            }
+        ],
+        "UltraBlurColors": {
+            "topLeft": "0b0d0c",
+            "topRight": "11120f",
+            "bottomRight": "333432",
+            "bottomLeft": "0f1313"
+        },
+        "Guid": [
+            {
+                "id": "imdb://tt32561844"
+            },
+            {
+                "id": "tmdb://5829265"
+            },
+            {
+                "id": "tvdb://10851517"
+            }
+        ],
+        "Rating": [
+            {
+                "image": "imdb://image.rating",
+                "value": 8.6,
+                "type": "audience"
+            },
+            {
+                "image": "themoviedb://image.rating",
+                "value": 8,
+                "type": "audience"
+            }
+        ],
+        "Director": [
+            {
+                "id": 105643,
+                "filter": "director=105643",
+                "tag": "Amanda Marsalis",
+                "tagKey": "5d776ae1ad5437001f78bba6",
+                "thumb": "https://metadata-static.plex.tv/a/people/ab1f8c4334f6715cb47b8cd55054f8ca.jpg"
+            }
+        ],
+        "Writer": [
+            {
+                "id": 105637,
+                "filter": "writer=105637",
+                "tag": "R. Scott Gemmill",
+                "tagKey": "5e163564df4678003f520709",
+                "thumb": "https://metadata-static.plex.tv/0/people/093f0c350b4c7976160c756328739a29.jpg"
+            }
+        ],
+        "Role": [
+            {
+                "id": 105398,
+                "filter": "actor=105398",
+                "tag": "Noah Wyle",
+                "tagKey": "5d776825103a2d001f563c15",
+                "role": "Dr. Michael 'Robby' Robinavitch",
+                "thumb": "https://metadata-static.plex.tv/1/people/1e20d37073ab37d313caf27fac1dbc17.jpg"
+            },
+            {
+                "id": 105399,
+                "filter": "actor=105399",
+                "tag": "Tracy Ifeachor",
+                "tagKey": "5d77689dfb0d55001f5156c7",
+                "role": "Dr. Heather Collins",
+                "thumb": "https://metadata-static.plex.tv/2/people/26f7e47db516d9e5aea0d58d2e5d52d7.jpg"
+            },
+            {
+                "id": 105400,
+                "filter": "actor=105400",
+                "tag": "Patrick Ball",
+                "tagKey": "632091780bbf0b811fca3e52",
+                "role": "Dr. Frank Langdon",
+                "thumb": "https://metadata-static.plex.tv/0/people/02b42370e2d89fe2a0f0c66ba868d83b.jpg"
+            },
+            {
+                "id": 105401,
+                "filter": "actor=105401",
+                "tag": "Katherine LaNasa",
+                "tagKey": "5d776833e6d55c002040c966",
+                "role": "Charge Nurse Dana Evans",
+                "thumb": "https://metadata-static.plex.tv/9/people/9f53002776d1170598c91794eebb08b3.jpg"
+            },
+            {
+                "id": 105402,
+                "filter": "actor=105402",
+                "tag": "Supriya Ganesh",
+                "tagKey": "5e165368ef1040003f26839c",
+                "role": "Dr. Samira Mohan",
+                "thumb": "https://image.tmdb.org/t/p/original/psUdosBoBVMfnSpCpe4UTAsegTP.jpg"
+            },
+            {
+                "id": 105403,
+                "filter": "actor=105403",
+                "tag": "Fiona Dourif",
+                "tagKey": "5d77683deb5d26001f1e2884",
+                "role": "Dr. Cassie McKay",
+                "thumb": "https://metadata-static.plex.tv/a/people/a0d829828c0818143f50412bb103a66b.jpg"
+            },
+            {
+                "id": 37351,
+                "filter": "actor=37351",
+                "tag": "Taylor Dearden",
+                "tagKey": "5d776d8efb0d55001f5a3c6e",
+                "role": "Dr. Melissa King",
+                "thumb": "https://metadata-static.plex.tv/d/people/d65e091d426202ca708e9c3061738479.jpg"
+            },
+            {
+                "id": 105404,
+                "filter": "actor=105404",
+                "tag": "Isa Briones",
+                "tagKey": "5d7769eb7a53e9001e6f48cf",
+                "role": "Dr. Trinity Santos",
+                "thumb": "https://metadata-static.plex.tv/6/people/6ef81083bd5a868ed4400f9e7e6ab92b.jpg"
+            },
+            {
+                "id": 105405,
+                "filter": "actor=105405",
+                "tag": "Gerran Howell",
+                "tagKey": "5d776ed923d5a3001f530cc5",
+                "role": "Student Doctor Dennis Whitaker",
+                "thumb": "https://metadata-static.plex.tv/3/people/3087e218f03fb6de346221b278ed3ba3.jpg"
+            },
+            {
+                "id": 105406,
+                "filter": "actor=105406",
+                "tag": "Shabana Azeez",
+                "tagKey": "5f15504fff870700406d968a",
+                "role": "Student Doctor Victoria Javadi",
+                "thumb": "https://metadata-static.plex.tv/7/people/788e083edc48f51aa0805b4c50149c2c.jpg"
+            },
+            {
+                "id": 105473,
+                "filter": "actor=105473",
+                "tag": "Kim Bonifay",
+                "tagKey": "5d776a5cad5437001f77b598",
+                "role": "Amanda Jones",
+                "thumb": "https://metadata-static.plex.tv/0/people/0d1f173194cc8d47324df8927e439272.jpg"
+            },
+            {
+                "id": 40928,
+                "filter": "actor=40928",
+                "tag": "Joanna Going",
+                "tagKey": "5d7768327228e5001f1de2e6",
+                "role": "Theresa Saunders",
+                "thumb": "https://metadata-static.plex.tv/7/people/739a2da522b2ca86e91b42adeb611e47.jpg"
+            },
+            {
+                "id": 9046,
+                "filter": "actor=9046",
+                "tag": "Michael Hyatt",
+                "tagKey": "5d7768418a7581001f12f08b",
+                "role": "Gloria Underwood",
+                "thumb": "https://metadata-static.plex.tv/c/people/c4923d87e077fa247f2c96a0568616b7.jpg"
+            },
+            {
+                "id": 105413,
+                "filter": "actor=105413",
+                "tag": "Krystel McNeil",
+                "tagKey": "5f404bc8864225004287e66a",
+                "role": "Kiara Alfaro",
+                "thumb": "https://metadata-static.plex.tv/8/people/8f0363b5b5e0f293a94bfa32bddc59a8.jpg"
+            },
+            {
+                "id": 105412,
+                "filter": "actor=105412",
+                "tag": "Alexandra Metz",
+                "tagKey": "5d7768a0431c830024c113c5",
+                "role": "Dr. Yolanda Garcia",
+                "thumb": "https://metadata-static.plex.tv/f/people/fb415bed990db6980755c345be46bb98.jpg"
+            },
+            {
+                "id": 105475,
+                "filter": "actor=105475",
+                "tag": "Riley Neldam",
+                "tagKey": "5d776bab51dd69001fe32def",
+                "role": "Drew Jones",
+                "thumb": "https://metadata-static.plex.tv/6/people/6b898eb1bcbae5cfb2b874a50a64e130.jpg"
+            },
+            {
+                "id": 105449,
+                "filter": "actor=105449",
+                "tag": "David Reivers",
+                "tagKey": "5d7768362e80df001ebde715",
+                "role": "Mr. Milton",
+                "thumb": "https://metadata-static.plex.tv/c/people/cf46cdfae3435b18e4d018d8ec387c02.jpg"
+            },
+            {
+                "id": 105420,
+                "filter": "actor=105420",
+                "tag": "Arun Storrs",
+                "tagKey": "5d77696196b655001fdcd0fd",
+                "role": "Minu",
+                "thumb": "https://metadata-static.plex.tv/f/people/f2cd34de430985806d75845e02b9430a.jpg"
+            },
+            {
+                "id": 105450,
+                "filter": "actor=105450",
+                "tag": "Mackenzie Astin",
+                "tagKey": "5d7768346f4521001ea9bdec",
+                "role": "Jereme Spencer",
+                "thumb": "https://metadata-static.plex.tv/d/people/d57266662b45ce4d91c398324e5b7ac3.jpg"
+            },
+            {
+                "id": 2456,
+                "filter": "actor=2456",
+                "tag": "Brandon Keener",
+                "tagKey": "5d7768273c3c2a001fbcb21e",
+                "role": "John Bradley",
+                "thumb": "https://metadata-static.plex.tv/people/5d7768273c3c2a001fbcb21e.jpg"
+            },
+            {
+                "id": 105425,
+                "filter": "actor=105425",
+                "tag": "Ashley Romans",
+                "tagKey": "5d776d74594b2b001e709d8a",
+                "role": "Joyce St. Claire",
+                "thumb": "https://metadata-static.plex.tv/e/people/e92b5c652666b5789aa4282c25933719.jpg"
+            },
+            {
+                "id": 105418,
+                "filter": "actor=105418",
+                "tag": "Samantha Sloyan",
+                "tagKey": "5d7768f0ad5437001f753736",
+                "role": "Lily Bradley",
+                "thumb": "https://metadata-static.plex.tv/1/people/164b1a983c72b1767f044f3487cf0717.jpg"
+            },
+            {
+                "id": 105451,
+                "filter": "actor=105451",
+                "tag": "Rebecca Tilney",
+                "tagKey": "5d77682de6d55c002040ba3b",
+                "role": "Helen Spencer",
+                "thumb": "https://metadata-static.plex.tv/4/people/4a8d30e61ea58eeba73a39680b3a524d.jpg"
+            },
+            {
+                "id": 105411,
+                "filter": "actor=105411",
+                "tag": "Ned Brower",
+                "tagKey": "5d7768346f4521001ea9be49",
+                "role": "Nurse Jesse Van Horn",
+                "thumb": "https://metadata-static.plex.tv/people/5d7768346f4521001ea9be49.jpg"
+            },
+            {
+                "id": 105434,
+                "filter": "actor=105434",
+                "tag": "Reginald Lashaun Clay",
+                "tagKey": "5d77686deb5d26001f1eb0a6",
+                "role": "PPD Officer Underhill",
+                "thumb": "https://metadata-static.plex.tv/3/people/3febcb5f86da85839babe1849455f89e.jpg"
+            },
+            {
+                "id": 105453,
+                "filter": "actor=105453",
+                "tag": "Lovensky Jean-Baptiste",
+                "tagKey": "5d776b2447dd6e001f6db9fd",
+                "role": "Sam Wallace",
+                "thumb": "https://metadata-static.plex.tv/e/people/e6f6db3969d4cc3d8cf822ec522b7ed0.jpg"
+            },
+            {
+                "id": 105436,
+                "filter": "actor=105436",
+                "tag": "Madison Mason",
+                "tagKey": "5d77682785719b001f3a0ed3",
+                "role": "Spencer",
+                "thumb": "https://metadata-static.plex.tv/a/people/a4795dd6f61835ffc8045a48cf2de1e6.jpg"
+            },
+            {
+                "id": 105477,
+                "filter": "actor=105477",
+                "tag": "Wesley River",
+                "tagKey": "669e24f084b5fdbdece9fc84",
+                "role": "Tyler"
+            },
+            {
+                "id": 105525,
+                "filter": "actor=105525",
+                "tag": "Mike Aviles",
+                "tagKey": "5f40205f02101b0040f47a41",
+                "role": "Yeltsin"
+            },
+            {
+                "id": 105454,
+                "filter": "actor=105454",
+                "tag": "Kadan Well Bennett",
+                "tagKey": "66868fb64e58c55a4dc1e2c1",
+                "role": "Medic Flores",
+                "thumb": "https://image.tmdb.org/t/p/original/sHN9P8j9v2lmhEbgQ9j8c5jIIWy.jpg"
+            },
+            {
+                "id": 105526,
+                "filter": "actor=105526",
+                "tag": "Tor Brown",
+                "tagKey": "5d776db447dd6e001f6f5828",
+                "role": "Gary"
+            },
+            {
+                "id": 105527,
+                "filter": "actor=105527",
+                "tag": "Bobby Ray Cauley Jr.",
+                "tagKey": "5d776c70ad5437001f7be2ef",
+                "role": "Alex"
+            },
+            {
+                "id": 105429,
+                "filter": "actor=105429",
+                "tag": "Misha Gonz-Cirkl",
+                "tagKey": "5d776ed096b655001fe74bdd",
+                "role": "Esme Alvarez",
+                "thumb": "https://metadata-static.plex.tv/1/people/14d74508495608da9ad48d0de68c7595.jpg"
+            },
+            {
+                "id": 105528,
+                "filter": "actor=105528",
+                "tag": "Jordan Hendricks",
+                "tagKey": "5d776bbb594b2b001e6e1ff1",
+                "role": "Ben Kemper"
+            },
+            {
+                "id": 105455,
+                "filter": "actor=105455",
+                "tag": "Caroline Henry",
+                "tagKey": "5d776ed9ad5437001f802fb2",
+                "role": "Medic Lidel",
+                "thumb": "https://metadata-static.plex.tv/1/people/19f2c625df3588ebf442742e8f4ecea7.jpg"
+            },
+            {
+                "id": 105456,
+                "filter": "actor=105456",
+                "tag": "Robert King",
+                "tagKey": "5d9f3d8668e4c8001fb68f7d",
+                "role": "Dr. Fred Miller",
+                "thumb": "https://metadata-static.plex.tv/e/people/e3c6e8102b125061540013358482e73c.jpg"
+            },
+            {
+                "id": 6200,
+                "filter": "actor=6200",
+                "tag": "Carlos Linares",
+                "tagKey": "5d776825880197001ec90301",
+                "role": "Beto",
+                "thumb": "https://metadata-static.plex.tv/people/5d776825880197001ec90301.jpg"
+            },
+            {
+                "id": 105478,
+                "filter": "actor=105478",
+                "tag": "Shannon McClung",
+                "tagKey": "5d7769d7ad5437001f769474",
+                "role": "Flight Nurse Cory Dodds",
+                "thumb": "https://metadata-static.plex.tv/c/people/c329b4e5f46ab00378850e94a123d4fd.jpg"
+            },
+            {
+                "id": 105529,
+                "filter": "actor=105529",
+                "tag": "Kerry Lynne McHugh",
+                "tagKey": "5d77689f374a5b001fecb263",
+                "role": "Carol",
+                "thumb": "https://metadata-static.plex.tv/2/people/28be2969d23b4ebf26e0cca659625916.jpg"
+            },
+            {
+                "id": 105530,
+                "filter": "actor=105530",
+                "tag": "Robert Miano",
+                "tagKey": "5d7768288718ba001e3121a8",
+                "role": "Tagari",
+                "thumb": "https://metadata-static.plex.tv/b/people/bbbaaf10cc15fa0fd654456114858bcc.jpg"
+            },
+            {
+                "id": 105414,
+                "filter": "actor=105414",
+                "tag": "Jeanette O'Connor",
+                "tagKey": "5d7768d9fb0d55001f51a9e4",
+                "role": "Myrna White",
+                "thumb": "https://metadata-static.plex.tv/9/people/9156d1f2c0a7da4a4c5cda456a78c0b2.jpg"
+            },
+            {
+                "id": 105457,
+                "filter": "actor=105457",
+                "tag": "Johnathan O'Neil",
+                "tagKey": "67810ccc90c398611564bb0c",
+                "role": "Security Guard Olsen"
+            },
+            {
+                "id": 105421,
+                "filter": "actor=105421",
+                "tag": "Hansford Prince",
+                "tagKey": "5d776a9bf617c9002016f0d5",
+                "role": "Earl Thomas",
+                "thumb": "https://metadata-static.plex.tv/9/people/91f0f35de33fece94aa7c6b4cd1f2317.jpg"
+            },
+            {
+                "id": 105458,
+                "filter": "actor=105458",
+                "tag": "Matt Rasku",
+                "tagKey": "5e28f18288667a003e3aad8e",
+                "role": "Medic O'Neil"
+            },
+            {
+                "id": 105422,
+                "filter": "actor=105422",
+                "tag": "Mariel Suarez",
+                "tagKey": "5d7769b523d5a3001f4fb646",
+                "role": "Ondine",
+                "thumb": "https://metadata-static.plex.tv/b/people/b524daebfe93d2d8de3652e7ff5fff2f.jpg"
+            },
+            {
+                "id": 105459,
+                "filter": "actor=105459",
+                "tag": "Jonathan von Mering",
+                "tagKey": "5f4023d1ce2564003f8e0912",
+                "role": "Medic Bosco"
+            },
+            {
+                "id": 105460,
+                "filter": "actor=105460",
+                "tag": "Eddie Yu",
+                "tagKey": "5f403cd6c63b480040e0d641",
+                "role": "Medic Harley",
+                "thumb": "https://metadata-static.plex.tv/3/people/37bfe94dae5a82cc3bc3ebfe4331f7d5.jpg"
+            },
+            {
+                "id": 105407,
+                "filter": "actor=105407",
+                "tag": "Amielynn Abellera",
+                "tagKey": "5e16527420b9e6003e354c9d",
+                "role": "Nurse Perlah Alawi",
+                "thumb": "https://metadata-static.plex.tv/c/people/ce2c0f986c1a31518a3c9b6696a7fc04.jpg"
+            },
+            {
+                "id": 105408,
+                "filter": "actor=105408",
+                "tag": "Jalen Thomas Brooks",
+                "tagKey": "5f406f6f5a76a80042dea856",
+                "role": "Nurse Mateo Diaz",
+                "thumb": "https://metadata-static.plex.tv/1/people/18a7f696d83178d2c19829b0f3b8b2e0.jpg"
+            },
+            {
+                "id": 105409,
+                "filter": "actor=105409",
+                "tag": "Brandon Mendez Homer",
+                "tagKey": "5d776ea9fb0d55001f5c9b80",
+                "role": "Nurse Donald 'Donnie' Donahue",
+                "thumb": "https://metadata-static.plex.tv/d/people/de2841baf286cefde26542bea1e2dbc4.jpg"
+            },
+            {
+                "id": 105410,
+                "filter": "actor=105410",
+                "tag": "Kristin Villanueva",
+                "tagKey": "5d776d357a53e9001e75470c",
+                "role": "Nurse Princess",
+                "thumb": "https://metadata-static.plex.tv/people/5d776d357a53e9001e75470c.jpg"
+            }
+        ],
+        "Producer": [
+            {
+                "id": 105638,
+                "filter": "producer=105638",
+                "tag": "Cynthia Adarkwa",
+                "tagKey": "5e1625db91c2030041200a8b"
+            },
+            {
+                "id": 105639,
+                "filter": "producer=105639",
+                "tag": "Michelle Lankwarden",
+                "tagKey": "5dcfd0c477120a001e1c8223"
+            }
+        ]
+    }
+}
