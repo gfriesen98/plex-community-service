@@ -1,12 +1,16 @@
 // src/components/transfer-table.jsx
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
+import { Alert, AlertTitle } from './ui/alert';
+import { AlertDescription } from './ui/alert';
 import { Badge } from './ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Pause, Play, X } from 'lucide-react';
+import { SpeedMonitor } from './speed-monitor';
+import { FilterControls } from './filter-controls';
+import { Pause, Play, X, BadgeAlert } from 'lucide-react';
 
-export function TransferTable({ transfers, loading, filter, visibleColumns, sendAction }) {
+export function TransferTable({ transfers, loading, filter, visibleColumns, setVisibleColumns, sendAction, allDownloadsPaused }) {
     const filteredTransfers = transfers.filter(transfer => {
         if (!filter) return true;
 
@@ -75,8 +79,13 @@ export function TransferTable({ transfers, loading, filter, visibleColumns, send
             <Card>
                 <CardHeader>
                     <CardTitle>Current Transfers</CardTitle>
+                    <FilterControls
+                        visibleColumns={visibleColumns}
+                        setVisibleColumns={setVisibleColumns}
+                    />
                 </CardHeader>
                 <CardContent>
+                    {transfers.length > 0 ? <SpeedMonitor allDownloadsPaused={allDownloadsPaused} /> : <></>}
                     <div className="text-center py-8 text-muted-foreground">
                         {transfers.length === 0 ? 'No active transfers' : 'No transfers match your filter'}
                     </div>
@@ -89,7 +98,31 @@ export function TransferTable({ transfers, loading, filter, visibleColumns, send
         <Card>
             <CardHeader>
                 <CardTitle>Current Transfers ({filteredTransfers.length})</CardTitle>
+                <FilterControls
+                    visibleColumns={visibleColumns}
+                    setVisibleColumns={setVisibleColumns}
+                />
             </CardHeader>
+            {allDownloadsPaused ? (
+                <CardContent>
+                    <Alert className="bg-warning text-warning-foreground">
+                        <BadgeAlert />
+                        <AlertTitle>
+                            All downloads are paused.
+                        </AlertTitle>
+                        <AlertDescription>
+                            Transfers may show as ACTIVE still.
+                        </AlertDescription>
+                    </Alert>
+                </CardContent>
+            ) : (
+                <CardContent>
+                    {transfers.length > 0 ? 
+                        <SpeedMonitor allDownloadsPaused={allDownloadsPaused} /> : 
+                        <></>
+                    }
+                </CardContent>
+            )}
             <CardContent>
                 <div className="rounded-md border">
                     <Table>

@@ -102,32 +102,16 @@ export function TransfersPage() {
                     </TabsList>
 
                     <TabsContent value="transfers" className="space-y-4">
-                        <FilterControls
-                            filter={filter}
-                            setFilter={setFilter}
-                            visibleColumns={visibleColumns}
-                            setVisibleColumns={setVisibleColumns}
-                            lineLimit={lineLimit}
-                            setLineLimit={setLineLimit}
-                        />
-
-                        {allDownloadsPaused && (
-                            <Alert>
-                                <AlertDescription>
-                                    All downloads and uploads are paused. Transfers may show as ACTIVE still.
-                                </AlertDescription>
-                            </Alert>
-                        )}
 
                         <ActionButtons sendAction={sendAction} />
-                        <SpeedMonitor allDownloadsPaused={allDownloadsPaused} />
-
                         <TransferTable
                             transfers={transfers}
                             loading={loading}
                             filter={filter}
                             visibleColumns={visibleColumns}
+                            setVisibleColumns={setVisibleColumns}
                             sendAction={sendAction}
+                            allDownloadsPaused={allDownloadsPaused}
                         />
                     </TabsContent>
 
@@ -139,38 +123,18 @@ export function TransfersPage() {
 
             {/* Desktop layout */}
             <div className="hidden md:block space-y-6">
-                <Card>
-                    <CardContent className="p-6">
-                        <DownloadForm outputPaths={outputPaths} />
-                    </CardContent>
-                </Card>
-
-                <FilterControls
-                    filter={filter}
-                    setFilter={setFilter}
-                    visibleColumns={visibleColumns}
-                    setVisibleColumns={setVisibleColumns}
-                    lineLimit={lineLimit}
-                    setLineLimit={setLineLimit}
-                />
-
-                {allDownloadsPaused && (
-                    <Alert>
-                        <AlertDescription>
-                            All downloads and uploads are paused. Transfers may show as ACTIVE still.
-                        </AlertDescription>
-                    </Alert>
-                )}
+                <DownloadForm outputPaths={outputPaths} />
 
                 <ActionButtons sendAction={sendAction} />
-                <SpeedMonitor allDownloadsPaused={allDownloadsPaused} />
 
                 <TransferTable
                     transfers={transfers}
                     loading={loading}
                     filter={filter}
                     visibleColumns={visibleColumns}
+                    setVisibleColumns={setVisibleColumns}
                     sendAction={sendAction}
+                    allDownloadsPaused={allDownloadsPaused}
                 />
             </div>
         </div>

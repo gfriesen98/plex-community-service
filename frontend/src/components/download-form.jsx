@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Alert, AlertDescription } from './ui/alert';
+import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 export function DownloadForm({ outputPaths }) {
@@ -103,6 +103,11 @@ export function DownloadForm({ outputPaths }) {
 
                     {message && (
                         <Alert variant={messageType === 'error' ? 'destructive' : 'default'}>
+                            {messageType === 'error'} ? (
+                                <AlertTitle>Error!</AlertTitle>
+                            ) : (
+                                <AlertTitle>Success!</AlertTitle>
+                            )
                             <AlertDescription>{message}</AlertDescription>
                         </Alert>
                     )}
