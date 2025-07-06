@@ -1,4 +1,4 @@
-const { listAdapters } = require('../sysinfo');
+import { listAdapters } from "../sysinfo.js";
 
 (async () => {
     try {

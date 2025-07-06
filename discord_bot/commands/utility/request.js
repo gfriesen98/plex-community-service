@@ -1,12 +1,13 @@
-const { SlashCommandBuilder, MessageFlags } = require('discord.js');
-const Logging = require('../../../util/logging');
-const { parseDiscordRequestString } = require('../../../util/common');
-const { request_url_template, channels } = require('../../../config').discord_bot.config;
-const path = require('path');
+import config from '../../../config.js';
+import { SlashCommandBuilder, MessageFlags } from 'discord.js';
+import Logging from '../../../util/logging.js';
+import { parseDiscordRequestString } from '../../../util/common.js';
+const { request_url_template, channels } = config.discord_bot.config;
+import path from 'path';
 
-const logger = new Logging('daily', path.resolve(__dirname, '..', '..', '..', 'logs'));
+const logger = new Logging('daily', path.resolve(import.meta.dirname, '..', '..', '..', 'logs'));
 
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
         .setName('request')
         .setDescription("Request stuff")

@@ -1,8 +1,10 @@
-const express = require('express');
-const Logging = require('../util/logging');
+import express from 'express';
+import Logging from '../util/logging.js';
+import { queue, transfers, setTransferState } from '../util/megacmd.js';
+import config from '../config.js';
+const { server } = config;
+
 const router = express.Router();
-const { queue, transfers, setTransferState } = require('../util/megacmd');
-const { server } = require('../config.js');
 const logging = new Logging();
 
 router.post('/queue', async (req, res) => {
@@ -148,4 +150,6 @@ router.get('/transfers', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;
+
+// module.exports = router;

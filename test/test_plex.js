@@ -1,8 +1,7 @@
-const path = require('path');
-const { readdirSync } = require('fs');
-const FormData = require('form-data');
-const axios = require('axios');
-const fs = require('fs');
+import path from 'path';
+import FormData from 'form-data';
+import axios from 'axios';
+import fs from 'fs';
 
 /**
  * This script sends a localhost request to /api/plex to test discord
@@ -13,7 +12,7 @@ const fs = require('fs');
  */
 
 // get all the json payloads saved
-const events = readdirSync(__dirname, { encoding: 'utf-8' }).filter(n => n.includes('.json')).map(n => n.replace('.json', ''));
+const events = fs.readdirSync(import.meta.dirname, { encoding: 'utf-8' }).filter(n => n.includes('.json')).map(n => n.replace('.json', ''));
 
 function help() {
     console.log(`Usage:     npm run test:plex [plex_event_name]`);
@@ -42,15 +41,16 @@ if (!events.includes(process.argv[2].trim())) {
     process.exit(1);
 }
 
-let eventType = path.resolve(__dirname, `${process.argv[2].trim()}.json`);
+let eventType = path.resolve(import.meta.dirname, `${process.argv[2].trim()}.json`);
 
 (async () => {
     const formData = new FormData();
     formData.append("use_test_discord_webhook", JSON.stringify({use_test_discord_webhook: true}));
 
     try {
-        const test_payload = require(eventType);
-        formData.append('payload', JSON.stringify(test_payload));
+        console.log(eventType);
+        const test_payload = await fs.promises.readFile(eventType, 'utf-8');
+        formData.append('payload', test_payload);
         
     } catch (error) {
         console.error(error);
@@ -58,7 +58,7 @@ let eventType = path.resolve(__dirname, `${process.argv[2].trim()}.json`);
     }
 
     try {
-        const stream = fs.createReadStream(path.join(__dirname, 'test_thumb.png'));
+        const stream = fs.createReadStream(path.join(import.meta.dirname, 'test_thumb.png'));
         formData.append('thumb', stream);
     } catch (error) {
         console.error(error);

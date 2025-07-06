@@ -1,12 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const Logging = require('./logging');
-const uuid = require('uuid');
-const { default: axios } = require('axios');
-const { plex_api_token, plex_server_hostname, plex_server_port } = require('../config').webhooks;
+import fs from 'fs';
+import path from 'path';
+import Logging from './logging.js';
+import config from '../config.js';
+
+const {
+    plex_api_token,
+    plex_server_hostname,
+} = config.webhooks;
+
 const logging = new Logging();
 
-function getDataFromPlexPayload(payload) {
+export function getDataFromPlexPayload(payload) {
     return {
         type: payload.Metadata.type,
         librarySection: payload.Metadata.librarySectionTitle,
@@ -24,11 +28,11 @@ function getDataFromPlexPayload(payload) {
     };
 }
 
-function getColorDecimal(payload) {
+export function getColorDecimal(payload) {
     return parseInt(payload.Metadata.UltraBlurColors.topLeft, 16);
 }
 
-function getGuidUrls(payload) {
+export function getGuidUrls(payload) {
     let obj = {
         imdb: "",
         tmdb: "",
@@ -58,9 +62,9 @@ function getGuidUrls(payload) {
  * @param {Object} payload req.body.payload object
  * @returns {boolean} success/fail
  */
-async function capturePayload(payload) {
+export async function capturePayload(payload) {
     try {
-        const name = path.join(__dirname, '..', 'test', `${payload.event}.json`);
+        const name = path.join(import.meta.dirname, '..', 'test', `${payload.event}.json`);
         await fs.promises.writeFile(name, JSON.stringify(payload), 'utf-8');
         return true;
     } catch (error) {
@@ -70,94 +74,88 @@ async function capturePayload(payload) {
     }
 }
 
-class DiscordWebhook {
-    constructor(payload) {
-        this.payload = this.#parsePlexPayload(payload);
-    }
+// export class DiscordWebhook {
+//     constructor(payload) {
+//         this.payload = this.#parsePlexPayload(payload);
+//     }
 
-    #parsePlexPayload(payload) {
-        return {
-            type: payload.Metadata.type,
-            librarySection: payload.Metadata.librarySectionTitle,
-            title: payload.Metadata.title,
-            originallyAvailableAt: payload.Metadata.originallyAvailableAt,
-            summary: payload.Metadata.summary,
-            contentRating: payload.Metadata.contentRating,
-            audienceRating: payload.Metadata.audienceRating,
-            color: this.getColorDecimals(payload),
-            genres: payload.Metadata.Genre.map(g => g.tag),
-            item_urls: getGuidUrls(payload),
-            thumb: payload.Metadata.thumb,
-            tagline: payload.Metadata.tagline,
-            event: payload.event
-        };
-    }
+//     #parsePlexPayload(payload) {
+//         return {
+//             type: payload.Metadata.type,
+//             librarySection: payload.Metadata.librarySectionTitle,
+//             title: payload.Metadata.title,
+//             originallyAvailableAt: payload.Metadata.originallyAvailableAt,
+//             summary: payload.Metadata.summary,
+//             contentRating: payload.Metadata.contentRating,
+//             audienceRating: payload.Metadata.audienceRating,
+//             color: this.getColorDecimals(payload),
+//             genres: payload.Metadata.Genre.map(g => g.tag),
+//             item_urls: getGuidUrls(payload),
+//             thumb: payload.Metadata.thumb,
+//             tagline: payload.Metadata.tagline,
+//             event: payload.event
+//         };
+//     }
 
-    getRatingUrl() {
-        if (this.payload.type === "music") return;
-        switch (this.payload.type) {
-            case "show": return this.payload.item_urls.tvdb;
-            case "movie": return this.payload.item_urls.imdb;
-            default: return this.payload.item_urls.imdb;
-        }
-    }
+//     getRatingUrl() {
+//         if (this.payload.type === "music") return;
+//         switch (this.payload.type) {
+//             case "show": return this.payload.item_urls.tvdb;
+//             case "movie": return this.payload.item_urls.imdb;
+//             default: return this.payload.item_urls.imdb;
+//         }
+//     }
 
-    async getHiresImage() {
-        const img_url = `http://${plex_server_hostname}:${plex_server_hostname}${this.payload.thumb}`;
-        const img_name = `${uuid.v4()}.jpg`;
-        const img_path = path.join(__dirname, '..', 'thumbnails', img_name);
-        let img_downloaded = false;
+//     async getHiresImage() {
+//         const img_url = `http://${plex_server_hostname}:${plex_server_hostname}${this.payload.thumb}`;
+//         const img_name = `${uuid.v4()}.jpg`;
+//         const img_path = path.join(import.meta.dirname, '..', 'thumbnails', img_name);
+//         let img_downloaded = false;
 
-        const img_exists = fs.existsSync(img_path);
+//         const img_exists = fs.existsSync(img_path);
 
-        if (img_exists) return { img_name, img_path }
+//         if (img_exists) return { img_name, img_path }
 
-        try {
-            const res = await axios({
-                url: img_url,
-                method: 'GET',
-                responseType: 'stream',
-                headers: {
-                    "X-Plex-Token": plex_api_token
-                }
-            });
+//         try {
+//             const res = await axios({
+//                 url: img_url,
+//                 method: 'GET',
+//                 responseType: 'stream',
+//                 headers: {
+//                     "X-Plex-Token": plex_api_token
+//                 }
+//             });
 
-            const writer = fs.createWriteStream(img_path);
-            res.data.pipe(writer);
+//             const writer = fs.createWriteStream(img_path);
+//             res.data.pipe(writer);
 
-            await new Promise((resolve, reject) => {
-                writer.on('finish', () => {
-                    img_downloaded = true;
-                    resolve();
-                });
+//             await new Promise((resolve, reject) => {
+//                 writer.on('finish', () => {
+//                     img_downloaded = true;
+//                     resolve();
+//                 });
 
-                writer.on('error', error => {
-                    reject(new Error(error));
-                });
-            });
+//                 writer.on('error', error => {
+//                     reject(new Error(error));
+//                 });
+//             });
 
-            return { img_name, img_path };
-        } catch (error) {
-            console.error(error);
-        }
-    }
+//             return { img_name, img_path };
+//         } catch (error) {
+//             console.error(error);
+//         }
+//     }
 
-    getColorDecimals(payload) {
-        return {
-            topLeft: parseInt(payload.Metadata.UltraBlurColors.topLeft, 16),
-            topRight: parseInt(payload.Metadata.UltraBlurColors.topRight, 16),
-            bottomLeft: parseInt(payload.Metadata.UltraBlurColors.bottomLeft, 16),
-            bottomRight: parseInt(payload.Metadata.UltraBlurColors.bottomRight, 16)
-        }
-    }
+//     getColorDecimals(payload) {
+//         return {
+//             topLeft: parseInt(payload.Metadata.UltraBlurColors.topLeft, 16),
+//             topRight: parseInt(payload.Metadata.UltraBlurColors.topRight, 16),
+//             bottomLeft: parseInt(payload.Metadata.UltraBlurColors.bottomLeft, 16),
+//             bottomRight: parseInt(payload.Metadata.UltraBlurColors.bottomRight, 16)
+//         }
+//     }
 
-    messageBuilder() {
+//     messageBuilder() {
         
-    }
-}
-
-module.exports = {
-    getDataFromPlexPayload,
-    capturePayload,
-    DiscordWebhook
-}
+//     }
+// }

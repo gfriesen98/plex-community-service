@@ -22,7 +22,7 @@ module.exports = createConfig({
         // Optional. Set to true to disable. Defaults to false.
         disabled: false,
         // Required if monitoring is enabled. The network interface to monitor (e.g., "eth0").
-        interface: "enp0s4",
+        network_interface: "enp0s4",
         // Optional. How often to poll in ms. Defaults to 1000.
         polling_rate_ms: 1000,
     },

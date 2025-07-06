@@ -15,7 +15,7 @@
 /**
  * @typedef {object} network_monitor_config
  * @property {boolean} [disabled=false] - Set to 'true' to disable monitoring.
- * @property {string} interface - REQUIRED. Network interface name. Required when monitoring is enabled.
+ * @property {string} network_interface - REQUIRED. Network interface name. Required when monitoring is enabled.
  * @property {number} [polling_rate_ms=1000] - How often the service polls for changes in milliseconds.
  */
 
@@ -95,7 +95,7 @@ function validateRequired(obj, key, path) {
  * @returns {config} The validated configuration object with defaults applied.
  * @throws {Error} if the configuration is invalid.
  */
-function createConfig(userConfig) {
+export default function createConfig(userConfig) {
     if (!userConfig) {
         throw new Error("Configuration object is missing.");
     }
@@ -152,7 +152,7 @@ function createConfig(userConfig) {
     }
 
     if (config.network_monitoring.disabled !== true) {
-        validateRequired(config.network_monitoring, "interface", "network_monitoring");
+        validateRequired(config.network_monitoring, "network_interface", "network_monitoring");
     }
 
     if (config.webhooks.disabled !== true) {
@@ -189,4 +189,4 @@ function createConfig(userConfig) {
     return config;
 }
 
-module.exports = createConfig;
+// module.exports = createConfig;

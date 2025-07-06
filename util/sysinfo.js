@@ -1,11 +1,11 @@
-const si = require('systeminformation');
-const { bytesH } = require('./common');
+import * as si from 'systeminformation';
+import { bytesH } from './common.js';
 
-async function listAdapters() {
+export async function listAdapters() {
     try {
-        const interface = await si.networkInterfaces();
+        const n_interface = await si.networkInterfaces();
         const adapters = [];
-        for (iface of interface) {
+        for (const iface of n_interface) {
             adapters.push(iface.iface);
         }
 
@@ -18,7 +18,7 @@ async function listAdapters() {
 
 function adapterExists(interfaceName, adapters) {
     try {
-        for (a of adapters) {
+        for (const a of adapters) {
             if (interfaceName === a) return true;
         }
         return false;
@@ -28,7 +28,7 @@ function adapterExists(interfaceName, adapters) {
     }
 }
 
-function networkMonitor(adapter, intervalMs = 1000) {
+export function networkMonitor(adapter, intervalMs = 1000) {
     let pollingIntervalId = null;
     let prevStats = null;
     let lastMeasurementTime = Date.now();
@@ -73,11 +73,12 @@ function networkMonitor(adapter, intervalMs = 1000) {
 
         stop: () => {
             if (pollingIntervalId) {
-                console.log(`Stopping network speed monitoring for adapter: ${adapter}`);
+                // console.log(`Stopping network speed monitoring for adapter: ${adapter}`);
                 clearInterval(pollingIntervalId);
                 pollingIntervalId = null;
                 prevStats = null;
                 latestSpeed = null;
+                console.log('Stopped network monitor');
             }
         },
 
@@ -87,7 +88,7 @@ function networkMonitor(adapter, intervalMs = 1000) {
     };
 }
 
-module.exports = {
-    listAdapters,
-    networkMonitor,
-};
+// module.exports = {
+//     listAdapters,
+//     networkMonitor,
+// };

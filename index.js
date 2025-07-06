@@ -1,24 +1,19 @@
-const {
-    server,
-    network_monitoring,
-    webhooks,
-    discord_bot
-} = require('./config');
-const express = require('express');
-const cors = require('cors');
-const http = require('http');
-const path = require('path');
-const megacmd = require('./routes/megacmd');
-const plex = require('./routes/plex');
-const DiscordBot = require('./util/discord_bot');
-const { networkMonitor } = require('./util/sysinfo');
-const { dayMonthYear, deleteDownloads } = require('./util/common');
-const Logging = require('./util/logging');
-const { CronJob } = require('cron');
-const { bot_script, stdio, detached } = discord_bot;
-const { interface, polling_rate_ms } = network_monitoring;
+import config from './config.js';
+import express from 'express';
+import cors from 'cors';
+import http from 'http';
+import path from 'path';
+import megacmd from './routes/megacmd.js';
+import plex from './routes/plex.js';
+import DiscordBot from './util/discord_bot.js';
+import { networkMonitor } from './util/sysinfo.js';
+import { dayMonthYear, deleteDownloads } from './util/common.js';
+import Logging from './util/logging.js';
+import { CronJob } from 'cron';
+const { bot_script, stdio, detached } = config.discord_bot;
+const { network_interface, polling_rate_ms } = config.network_monitoring;
 
-const allowedOrigins = ['http://localhost', `http://${webhooks.plex_server_hostname}:${webhooks.plex_server_port}`];
+const allowedOrigins = ['http://localhost', `http://${config.webhooks.plex_server_hostname}:${config.webhooks.plex_server_port}`];
 const corsOptions = {
     origin: function (origin, cb) {
         if (!origin) return cb(null, true);
@@ -33,23 +28,23 @@ const corsOptions = {
 
 const logging = new Logging();
 const discordBot = new DiscordBot(bot_script, "this", stdio, detached);
-const NetworkMonitor = networkMonitor(interface, polling_rate_ms);
+const NetworkMonitor = networkMonitor(network_interface, polling_rate_ms);
 let clearDownloadsJob = null;
 
 const app = express();
-app.use(express.static('public'));
-// app.use(express.static(path.join(__dirname, '..', 'megacmd-frontend', 'dist', 'index.html')));
+// app.use(express.static('public'));
+app.use(express.static(path.join(import.meta.dirname, 'frontend', 'dist')));
 app.use(cors());
 app.use(express.json());
 
 app.use('/api', megacmd);
 
-if (!webhooks.disabled) {
+if (!config.webhooks.disabled) {
     // use the plex api when webhooks are enabled and start job to clean temp downloads
     app.use('/api', cors(corsOptions), plex);
 
     clearDownloadsJob = new CronJob(
-        server.cron_cleanup,
+        config.server.cron_cleanup,
         async () => {
             try {
                 await deleteDownloads('./downloads');
@@ -60,8 +55,24 @@ if (!webhooks.disabled) {
         },
         null,
         false,
-        server.tz
+        config.server.tz
     );
+}
+
+async function shutdownGracefully() {
+    console.log('Server is shutting down...');
+    await new Promise(resolve => webserver.close(() => {
+        console.log('Webserver closed connections');
+        resolve();
+    }));
+
+    console.log('Stopping services...');
+    if (!config.network_monitoring.disabled) NetworkMonitor.stop();
+    if (!config.discord_bot.disabled) await discordBot.stop();
+    if (clearDownloadsJob && !config.webhooks.disabled) clearDownloadsJob.stop();
+
+    console.log('All services have stopped, exiting now');
+    process.exit(0);
 }
 
 /**
@@ -69,7 +80,7 @@ if (!webhooks.disabled) {
  */
 app.get('/api/options', async (req, res) => {
     try {
-        const download_locations = server.download_locations.map(p => p.label);
+        const download_locations = config.server.download_locations.map(p => p.label);
         return res.json({
             options: {
                 outputPathLabels: download_locations
@@ -77,7 +88,7 @@ app.get('/api/options', async (req, res) => {
         });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({ error: error.message });
     }
 })
 
@@ -144,7 +155,7 @@ app.get('/api/log/:tag', async (req, res) => {
  */
 app.get('/api/network/speed', async (req, res) => {
     try {
-        if (network_monitoring.disabled) {
+        if (config.network_monitoring.disabled) {
             return res.sendStatus(403);
         }
         const speed = NetworkMonitor.latestSpeed;
@@ -157,59 +168,26 @@ app.get('/api/network/speed', async (req, res) => {
 });
 
 /**
- * Serves the main index.html page
+ * Serve the frontend React build from Vite
  */
-app.get('/', (req, res) => {
+app.get('/*splat', (req, res) => {
     try {
-        return res.sendFile(path.resolve('./public/index.html'));
-
+        return res.sendFile(path.resolve(import.meta.dirname, 'frontend', 'dist', 'index.html'));
     } catch (error) {
         console.error(error);
-        return res.send(`<html><body><h1>HTTP500</h1><p>An error occurred serving index.html</p><p>${error.message}</p></body></html>`);
-    }
-});
-
-/**
- * Serves the logs.html page
- */
-app.get('/logs', (req, res) => {
-    try {
-        return res.sendFile(path.resolve('./public/logs.html'));
-    } catch (error) {
-        console.error(error);
-        return res.send(`<html><body><h1>HTTP500</h1><p>An error occurred serving logs.html</p><p>${error.message}</p></body></html>`);
+        return res.send(`<html><body><h1>HTTP500</h1><p>${error.message}</p></body></html>`);
     }
 });
 
 const httpServer = http.createServer(app);
 
-const webserver = httpServer.listen(server.port, async () => {
-    if (!network_monitoring.disbled) await NetworkMonitor.start(); // start network monitoring
-    if (!discord_bot.disabled) discordBot.start();                 // start discord bot
-    if (clearDownloadsJob && !webhooks.disabled) clearDownloadsJob.start(); // start cronjob
+const webserver = httpServer.listen(config.server.port, async () => {
+    if (!config.network_monitoring.disabled) await NetworkMonitor.start(); // start network monitoring
+    if (!config.discord_bot.disabled) discordBot.start();                 // start discord bot
+    if (clearDownloadsJob && !config.webhooks.disabled) clearDownloadsJob.start(); // start cronjob
 
-    console.log(`Server running on port ${server.port}`);
+    console.log(`Server running on port ${config.server.port}`);
 });
 
-webserver.on('close', () => {
-    console.log('Server stopped. Stopping network monitor...');
-    if (!network_monitoring.disabled) NetworkMonitor.stop();
-    if (!discord_bot.disabled) discordBot.stop();
-    if (clearDownloadsJob && !webhooks.disabled) clearDownloadsJob.stop();
-});
-
-process.on('SIGINT', () => {
-    console.log('SIGINT signal received: closing HTTP server');
-    webserver.close(() => {
-        console.log('HTTP server closed.');
-        process.exit(0);
-    });
-});
-
-process.on('SIGTERM', () => {
-    console.log('SIGTERM signal received: closing HTTP server');
-    webserver.close(() => {
-        console.log('HTTP server closed.');
-        process.exit(0);
-    });
-});
+process.on('SIGINT', shutdownGracefully);
+process.on('SIGTERM', shutdownGracefully);

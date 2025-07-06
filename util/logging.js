@@ -1,9 +1,9 @@
-const fs = require('fs').promises;
-const fss = require('fs');
-const { dayMonthYear, hoursMinutesSeconds } = require('./common');
-const path = require('path');
+import fs from 'fs/promises';
+import fss from 'fs';
+import { dayMonthYear, hoursMinutesSeconds } from './common.js';
+import path from 'path';
 
-class Logging {
+export default class Logging {
     constructor(channel = 'daily', logDirectory = './logs') {
         this.channel = channel;
         this.logDirectory = path.resolve(logDirectory);
@@ -244,4 +244,4 @@ class Logging {
     }
 }
 
-module.exports = Logging;
+// module.exports = Logging;

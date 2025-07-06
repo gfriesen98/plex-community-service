@@ -1,7 +1,7 @@
-const { spawn } = require('child_process');
-const path = require('path');
+import { spawn } from 'child_process';
+import path from 'path';
 
-class DiscordBot {
+export default class DiscordBot {
     /**
      * Create a new subprocess for a discord bot
      * @param {string} script_path Path to the bot entrypoint script.
@@ -49,7 +49,7 @@ class DiscordBot {
         });
 
         this.bot_process.on('exit', (code, signal) => {
-            console.log(`[bot] Bot process (pid: ${this.bot_pid}) exited with code ${code} and signal ${signal}`);
+            console.log(`[bot] Bot process (pid: ${this.bot_pid}) exited with signal ${signal}`);
             this.cleanupProcess()
         });
 
@@ -64,7 +64,7 @@ class DiscordBot {
         }
     }
 
-    stop () {
+    async stop () {
         if (!this.bot_process || this.bot_process.killed) {
             console.log('[bot] Bot is not running');
             return;
@@ -72,17 +72,41 @@ class DiscordBot {
 
         console.log(`[bot] Stopping bot process (pid: ${this.bot_pid})`);
         this.bot_process.kill('SIGTERM');
-        this.cleanupProcess();
+        // this.cleanupProcess();
+        return new Promise((resolve, reject) => {
+            const timeout = setTimeout(() => {
+                if (this.bot_process && !this.bot_process.killed) {
+                    console.warn(`[bot] Bot process (pid: ${this.bot_pid}) did not respond to SIGTERM. Sending SIGKILL...`);
+                    this.bot_process.kill("SIGKILL");
+                }
+                resolve();
+            }, 5000);
+
+            this.bot_process.once('exit', (code, signal) => {
+                clearTimeout(timeout);
+                console.log(`[bot] Bot process (pid: ${this.bot_pid}) confirmed exit after stop signal.`);
+                resolve();
+            });
+
+            this.bot_process.once('error', err => {
+                clearTimeout(timeout);
+                console.error(`[bot] Error trying to kill the bot (pid: ${this.bot_pid}): `, err);
+                resolve();
+            });
+        });
     }
 
     cleanupProcess() {
+        if (this.bot_process) {
+            this.bot_process.removeAllListeners();
+        }
         this.bot_process = null;
         this.bot_pid = null;
     }
 
     isRunning() {
-        return this.bot_process !== null && !this.bot_process.killed;
+        return this.bot_process !== null && this.bot_pid !== null;
     }
 }
 
-module.exports = DiscordBot;
+// module.exports = DiscordBot;

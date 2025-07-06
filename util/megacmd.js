@@ -1,5 +1,5 @@
-const { spawn } = require('child_process');
-const path = require('path');
+import { spawn } from 'child_process';
+import path from 'path';
 
 /**
  * Parses mega-transfers output into an array of objects.
@@ -111,18 +111,18 @@ function parseMegaTransfers(text) {
  * @param {number|string} tag_number Set state of specific transfer by tag number from the TAG column of the output. Set `all` to `false`
  * @returns {Promise<any>} Resolves with `{stdout, stderr, code}`. rejects with `new Error()`
  */
-async function setTransferState(action = "pause", all = true, tag_number) {
+export async function setTransferState(action = "pause", all = true, tag_number) {
     return new Promise((resolve, reject) => {
-        let arguments = [];
+        let args = [];
         switch (action) {
-            case "pause": arguments.push('-p'); break;
-            case "resume": arguments.push('-r'); break;
-            case "cancel": arguments.push('-c'); break;
+            case "pause": args.push('-p'); break;
+            case "resume": args.push('-r'); break;
+            case "cancel": args.push('-c'); break;
             default: reject(new Error(`Action ${action} does not exist!`));
         }
 
         if (all) {
-            arguments.push('-a');
+            args.push('-a');
         } else if (!all && typeof tag_number !== 'undefined') { // allowing tag_number to be represented as either a string or a number (hopefully)
             let n = '';
             if (typeof tag_number === 'number') {
@@ -133,10 +133,10 @@ async function setTransferState(action = "pause", all = true, tag_number) {
                 reject(new Error(`Argument 'tag_number' is not a number. Value: ${tag_number}`));
             }
 
-            arguments.push(n);
+            args.push(n);
         }
 
-        const proc = spawn(`mega-transfers`, arguments);
+        const proc = spawn(`mega-transfers`, args);
 
         let stdout = '';
         let stderr = '';
@@ -165,7 +165,7 @@ async function setTransferState(action = "pause", all = true, tag_number) {
  * @param {number} limit Set to limit how many lines returned from mega-transfers. Default is '0' for unlimited
  * @returns {Promise<{results: { json: Array<object>, all_downloads_paused: boolean }, stderr: string, code: number}>}
  */
-async function transfers(limit=0) {
+export async function transfers(limit=0) {
     return new Promise((resolve, reject) => {
         const proc = spawn('mega-transfers', [
             '--only-downloads',
@@ -201,7 +201,7 @@ async function transfers(limit=0) {
  * @param {string} outputPath path to download to
  * @returns {Promise<Object>}
  */
-async function queue(url, outputPath) {
+export async function queue(url, outputPath) {
     return new Promise((resolve, reject) => {
         const proc = spawn('mega-get', ['-q', url, outputPath]);
 
@@ -226,8 +226,8 @@ async function queue(url, outputPath) {
     });
 }
 
-module.exports = {
-    queue,
-    transfers,
-    setTransferState,
-};
+// module.exports = {
+//     queue,
+//     transfers,
+//     setTransferState,
+// };

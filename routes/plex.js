@@ -1,12 +1,13 @@
-const express = require('express');
-const multer = require('multer');
-const FormData = require('form-data');
-const axios = require('axios');
-const fs = require('fs');
-const uuid = require('uuid');
-const path = require('path');
-const Logging = require('../util/logging');
-const { capturePayload, getDataFromPlexPayload , DiscordWebhook} = require('../util/webhooks');
+import express from 'express';
+import multer from 'multer';
+import FormData from 'form-data';
+import axios from 'axios';
+import fs from 'fs';
+import * as uuid from 'uuid';
+import path from 'path';
+import Logging from '../util/logging.js';
+import { capturePayload, getDataFromPlexPayload } from '../util/webhooks.js';
+import config from '../config.js';
 const {
     plex_server_hostname,
     plex_server_port,
@@ -15,18 +16,18 @@ const {
     higher_resolution_images,
     test_discord_webhook_url,
     test_capture_latest_payload
-} = require('../config').webhooks;
+} = config.webhooks;
 
 let use_test_discord_webhook = false;
 const router = express.Router();
 const logging = new Logging();
-const test_thumb = path.resolve(__dirname, '..', 'test', 'test_thumb.png');
+const test_thumb = path.resolve(import.meta.dirname, '..', 'test', 'test_thumb.png');
 
 // thumbnails are always sent with the webhook payload,
 // download them or else the payload wont be parsed properly
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const download_dir = path.join(__dirname, '..', 'downloads');
+        const download_dir = path.join(import.meta.dirname, '..', 'downloads');
         cb(null, download_dir)
     },
     filename: (req, file, cb) => {
@@ -44,14 +45,13 @@ router.post('/plex', upload.single('thumb'), async (req, res) => {
         // check if this request is from the test script
         if (typeof req.body.use_test_discord_webhook !== 'undefined') {
             use_test_discord_webhook = true;
+            console.log("test request");
         }
 
         const payload = JSON.parse(req.body.payload);
 
         if (test_capture_latest_payload)
             await capturePayload(payload);
-
-        // const discord_webhook = new DiscordWebhook(payload);
 
         // only checking for library.new for now
         if (payload.event !== "library.new") return res.sendStatus(403);
@@ -70,7 +70,7 @@ router.post('/plex', upload.single('thumb'), async (req, res) => {
             thumb,
             tagline,
             event
-        } = webhooks.getDataFromPlexPayload(payload);
+        } = getDataFromPlexPayload(payload);
 
         // ignore music for now
         if (type === 'music') return res.sendStatus(200);
@@ -84,7 +84,7 @@ router.post('/plex', upload.single('thumb'), async (req, res) => {
 
         const imgUrl = `http://${plex_server_hostname}:${plex_server_port}${thumb}`;
         const imageName = `${uuid.v4()}.jpg`;
-        const imagePath = path.join(__dirname, '..', 'downloads', imageName);
+        const imagePath = path.join(import.meta.dirname, '..', 'downloads', imageName);
         let imgDownloaded = false;
 
         // download higher res image from plex server
@@ -228,4 +228,5 @@ router.post('/plex', upload.single('thumb'), async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;
+// module.exports = router;

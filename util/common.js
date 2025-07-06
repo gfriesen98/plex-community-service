@@ -1,6 +1,5 @@
-const fs = require('fs').promises;
-const path = require('path');
-// const Logging = require('./logging');
+import fs from 'fs/promises';
+import path from 'path';
 
 /**
  * Converts bytes to a human-readable string (KB, MB, GB, TB).
@@ -8,7 +7,7 @@ const path = require('path');
  * @param {number} [decimals=2] - The number of decimal places.
  * @returns {string} - The human-readable string.
  */
-function bytesH(bytesPerSecond, decimals = 2) {
+export function bytesH(bytesPerSecond, decimals = 2) {
     if (bytesPerSecond === 0) return '0 Bytes/s';
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
@@ -21,21 +20,21 @@ function bytesH(bytesPerSecond, decimals = 2) {
  * Get the date string in DD-MM-YYYY format
  * @param {Date} date Date object. Default is `now`
  */
-function dayMonthYear(date = new Date()) {
+export function dayMonthYear(date = new Date()) {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
 }
 
-function hoursMinutesSeconds(date = new Date()) {
+export function hoursMinutesSeconds(date = new Date()) {
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
     return `${hours}:${minutes}:${seconds}`;
 }
 
-async function deleteDownloads(directoryPath) {
+export async function deleteDownloads(directoryPath) {
     try {
         await fs.access(directoryPath);
     } catch (error) {
@@ -80,7 +79,7 @@ async function deleteDownloads(directoryPath) {
     }
 }
 
-function parseDiscordRequestString(markdownString) {
+export function parseDiscordRequestString(markdownString) {
     const result = {
         requestor: null,
         requestDate: null,
@@ -148,10 +147,10 @@ function parseDiscordRequestString(markdownString) {
     return result;
 }
 
-module.exports = {
-    bytesH,
-    dayMonthYear,
-    hoursMinutesSeconds,
-    deleteDownloads,
-    parseDiscordRequestString
-};
+// module.exports = {
+//     bytesH,
+//     dayMonthYear,
+//     hoursMinutesSeconds,
+//     deleteDownloads,
+//     parseDiscordRequestString
+// };
