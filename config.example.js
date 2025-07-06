@@ -1,6 +1,6 @@
-const createConfig = require("./util/config.jsdoc.js");
+import createConfig from "./util/config.jsdoc.js";
 
-module.exports = createConfig({
+export default createConfig({
     server: {
         // Required. Your timezone (e.g., "America/Chicago").
         tz: "America/New_York",
