@@ -2,7 +2,7 @@ const express = require('express');
 const Logging = require('../util/logging');
 const router = express.Router();
 const { queue, transfers, setTransferState } = require('../util/megacmd');
-const { server } = require('../config.json');
+const { server } = require('../config.js');
 const logging = new Logging();
 
 router.post('/queue', async (req, res) => {

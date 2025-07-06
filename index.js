@@ -8,7 +8,6 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const path = require('path');
-const fs = require('fs/promises');
 const megacmd = require('./routes/megacmd');
 const plex = require('./routes/plex');
 const DiscordBot = require('./util/discord_bot');
@@ -39,6 +38,7 @@ let clearDownloadsJob = null;
 
 const app = express();
 app.use(express.static('public'));
+// app.use(express.static(path.join(__dirname, '..', 'megacmd-frontend', 'dist', 'index.html')));
 app.use(cors());
 app.use(express.json());
 
@@ -180,7 +180,6 @@ app.get('/logs', (req, res) => {
         return res.send(`<html><body><h1>HTTP500</h1><p>An error occurred serving logs.html</p><p>${error.message}</p></body></html>`);
     }
 });
-
 
 const httpServer = http.createServer(app);
 

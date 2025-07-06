@@ -6,7 +6,7 @@ const fs = require('fs');
 const uuid = require('uuid');
 const path = require('path');
 const Logging = require('../util/logging');
-const webhooks = require('../util/webhooks');
+const { capturePayload, getDataFromPlexPayload , DiscordWebhook} = require('../util/webhooks');
 const {
     plex_server_hostname,
     plex_server_port,
@@ -15,7 +15,7 @@ const {
     higher_resolution_images,
     test_discord_webhook_url,
     test_capture_latest_payload
-} = require('../config.json').webhooks;
+} = require('../config').webhooks;
 
 let use_test_discord_webhook = false;
 const router = express.Router();
@@ -47,14 +47,11 @@ router.post('/plex', upload.single('thumb'), async (req, res) => {
         }
 
         const payload = JSON.parse(req.body.payload);
-        // if (test_capture_latest_payload) {
-        //     fs.writeFile(path.join(__dirname, '..', 'test', `${payload.event}.json`), JSON.stringify(payload), err => {
-        //         if (err) console.error(`Error writing test payload: `, err);
-        //     });
-        // }
 
         if (test_capture_latest_payload)
-            await webhooks.capturePayload(payload);
+            await capturePayload(payload);
+
+        // const discord_webhook = new DiscordWebhook(payload);
 
         // only checking for library.new for now
         if (payload.event !== "library.new") return res.sendStatus(403);
@@ -78,11 +75,11 @@ router.post('/plex', upload.single('thumb'), async (req, res) => {
         // ignore music for now
         if (type === 'music') return res.sendStatus(200);
 
-        let itemPublicUrl = "";
+        let ratingUrl = "";
         switch (type) {
-            case "show": itemPublicUrl = item_urls.tvdb; break;
-            case "movie": itemPublicUrl = item_urls.imdb; break;
-            default: itemPublicUrl = item_urls.imdb;
+            case "show": ratingUrl = item_urls.tvdb; break;
+            case "movie": ratingUrl = item_urls.imdb; break;
+            default: ratingUrl = item_urls.imdb;
         }
 
         const imgUrl = `http://${plex_server_hostname}:${plex_server_port}${thumb}`;
@@ -136,7 +133,7 @@ router.post('/plex', upload.single('thumb'), async (req, res) => {
                 {
                     "title": title,
                     "description": summary,
-                    "url": itemPublicUrl,
+                    "url": ratingUrl,
                     "color": color,
                     "author": {
                         "name": `New ${type} added to ${librarySection} 🍿`
