@@ -103,11 +103,6 @@ export function DownloadForm({ outputPaths }) {
 
                     {message && (
                         <Alert variant={messageType === 'error' ? 'destructive' : 'default'}>
-                            {messageType === 'error'} ? (
-                                <AlertTitle>Error!</AlertTitle>
-                            ) : (
-                                <AlertTitle>Success!</AlertTitle>
-                            )
                             <AlertDescription>{message}</AlertDescription>
                         </Alert>
                     )}
